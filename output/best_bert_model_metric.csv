@@ -1,0 +1,2 @@
+,Base-model,Optimizer,Accuracy,Precision,Recall,F1-score
+info,bert-base-multilingual-cased,RAdam,0.125,0.016,0.125,0.028
