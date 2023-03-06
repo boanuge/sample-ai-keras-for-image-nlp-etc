@@ -8,6 +8,7 @@ pip install waitress==2.1.2
 #waitress 2.1.2
 
 
+
 Image Detection 사용 환경
 pip install keras==2.7.0
 #keras 2.7.0
@@ -21,7 +22,7 @@ pip install pillow==8.4.0
 pip install matplotlib==3.4.3
 #matplotlib 3.4.3
 
- 
+
 
 TFBertForSequenceClassification 모델
 (from huggingface-hub) 사용 환경
