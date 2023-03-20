@@ -1,6 +1,7 @@
 from flask import Flask, Response, jsonify, send_file
 from waitress import serve
 
+import datetime
 from PIL import Image
 from timeit import default_timer
 from yolo3_class import YOLO
@@ -39,6 +40,15 @@ def check_filename(file_path):
         return True
     else:
         return False
+
+def check_filepath(file_path):
+    if os.path.exists(file_path):
+        return True
+    else:
+        return False
+
+if check_filepath(cfg.model_path) == False:
+    exit("Error: model path not found at {}".format(cfg.model_path))
 
 
 
@@ -135,6 +145,36 @@ def detect_image(fileName):
 
 
 
+@app.route('/detect/image', methods=['POST'])
+def detect_image_api():
+
+    try:
+        img_binary = request.get_data()
+        image_file = io.BytesIO(img_binary)
+        image = Image.open(image_file)
+
+        start = default_timer()
+
+        #print(f"AI-Service : Sending detected result @ requested file")
+
+        info_detected = yoloClass.detect_image(image)
+
+        detection_score = 0
+        if len(info_detected) != 0:
+            detection_score = np.max(info_detected)
+
+        # if an object is detected
+        if detection_score > 0.30:
+            json_data = {"detected" : "true"}
+        else:
+            json_data = {"detected" : "false"}
+
+        return jsonify(json_data), 200
+    except Exception as e:
+        return jsonify(error="Unexpected error:" + str(e)), 400
+
+    
+    
 if __name__ == '__main__':
     #serve(app, host="0.0.0.0", port=5000)
     app.run(host="0.0.0.0", port=5555, debug=True)
