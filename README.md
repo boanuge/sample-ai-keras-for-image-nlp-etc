@@ -1,6 +1,6 @@
-[AI 실행시 필요 모듈]
+# [AI 실행시 필요 모듈]
 
-Python API 서버 환경
+## Python API 서버 환경
 
 pip install flask==1.1.2
 #Flask 1.1.2
@@ -10,7 +10,7 @@ pip install waitress==2.1.2
 
 
 
-Image Detection 사용 환경
+## Image Detection 사용 환경
 
 pip install keras==2.7.0
 #keras 2.7.0
@@ -26,7 +26,7 @@ pip install matplotlib==3.4.3
 
 
 
-TFBertForSequenceClassification 모델
+## TFBertForSequenceClassification 모델
 
 (from huggingface-hub) 사용 환경
 
