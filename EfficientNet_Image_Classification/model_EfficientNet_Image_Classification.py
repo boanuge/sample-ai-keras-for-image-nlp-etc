@@ -26,24 +26,30 @@ def get_class(image):
 
     start = default_timer()
 
-    temporary_image_file = "temporary_image_file.jpg"
-
-    # Create the image file
-    image.save(temporary_image_file, format='JPEG')
-
-    img_resized = tf.keras.preprocessing.image.load_img(temporary_image_file, target_size=(456, 456)) # EfficientNetB5
+    new_size = (456, 456) # EfficientNetB5
+    img_resized = image.resize(new_size)
     img_vectorized = tf.keras.preprocessing.image.img_to_array(img_resized)
     img_vectorized = tf.keras.applications.efficientnet.preprocess_input(img_vectorized)
     img_vectorized = np.expand_dims(img_vectorized, axis=0)
 
     predicted_result = loaded_model.predict(img_vectorized)
 
+    '''
+    # Create the image file
+    temporary_image_file = "temporary_image_file.jpg"
+    image.save(temporary_image_file, format='JPEG')
+    img_resized = tf.keras.preprocessing.image.load_img(temporary_image_file, target_size=(456, 456)) # EfficientNetB5
+    img_vectorized = tf.keras.preprocessing.image.img_to_array(img_resized)
+    img_vectorized = tf.keras.applications.efficientnet.preprocess_input(img_vectorized)
+    img_vectorized = np.expand_dims(img_vectorized, axis=0)
+    predicted_result = loaded_model.predict(img_vectorized)
     # Delete the image file
     if os.path.exists(temporary_image_file):
         os.remove(temporary_image_file)
         print("File deleted successfully:", temporary_image_file)
     else:
         print("File not found:", temporary_image_file)
+    '''
 
     end = default_timer()
     print("Time duration(in seconds):", end - start)
