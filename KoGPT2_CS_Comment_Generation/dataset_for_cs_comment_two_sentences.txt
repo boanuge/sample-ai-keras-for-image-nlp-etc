@@ -1,0 +1,12 @@
+'''
+Each training example consists of two sentences separated by a period (.) and a newline character (\n).
+You can have as many training examples as you like in the "train.txt" file.
+An example of what the file might look like:
+
+This is the first sentence of the first training example. This is the second sentence of the first training example.
+This is the first sentence of the second training example. This is the second sentence of the second training example.
+'''
+
+예)
+전원이 안들어와요. 사용하신 기기를 조회한 결과 고장난 기기임을 확인하였습니다.
+쓰러져 있네요 치워주세요. 장소를 알려주시면 조속히 조치하도록 하겠습니다.
