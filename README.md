@@ -1,4 +1,4 @@
-# [AI 실행시 필요 모듈]
+# [AI 서비스 실행시 필요 모듈]
 
 ## Python API 서버 환경
 
@@ -26,7 +26,7 @@ pip install matplotlib==3.4.3
 
 
 
-## TFBertForSequenceClassification 모델
+## 자연어처리 모델
 
 (from huggingface-hub) 사용 환경
 
