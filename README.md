@@ -27,7 +27,7 @@ pip install matplotlib==3.4.3
 
 
 ## 자연어처리 모델
-(from huggingface-hub) 사용 환경
+### (from huggingface-hub) 사용 환경
 
 pip install tensorflow==2.12.0
 #tensorflow 2.12.0 <-- 2.7.0
