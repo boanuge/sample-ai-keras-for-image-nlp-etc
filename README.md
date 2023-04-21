@@ -15,8 +15,8 @@ pip install waitress==2.1.2
 pip install tensorflow==2.12.0
 #tensorflow 2.12.0 <-- 2.7.0
 
-pip install keras==2.7.0
-#keras 2.7.0
+pip install keras==2.12.0
+#keras 2.12.0 <-- 2.7.0
 
 pip install pillow==8.4.0
 #PIL 8.4.0
