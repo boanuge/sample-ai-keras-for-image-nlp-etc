@@ -1,0 +1,5 @@
+# chmod 777 yolo3_flask_main_script
+# ps -ef | grep flask
+# kill -9 <PID>
+
+nohup /home/boanuge/anaconda3/bin/python /home/boanuge/yolo3_flask_main.py > error.log &
