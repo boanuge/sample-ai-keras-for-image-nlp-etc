@@ -1,0 +1,5 @@
+# chmod 777 flask_ai_service_image
+# ps -ef | grep flask
+# kill -9 <PID>
+
+nohup python flask_ai_service_image.py > error.log &
