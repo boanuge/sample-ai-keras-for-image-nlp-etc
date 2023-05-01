@@ -26,6 +26,8 @@ def get_class(image):
 
     start = default_timer()
 
+    global loaded_model
+
     new_size = (456, 456) # EfficientNetB5
     img_resized = image.resize(new_size)
     img_vectorized = tf.keras.preprocessing.image.img_to_array(img_resized)
