@@ -177,6 +177,8 @@ You can now activate the installation by sourcing the ~/.bashrc file:
 (base) root@d48f2e696170:/# jupyter notebook --generate-config
 Writing default config to: /root/.jupyter/jupyter_notebook_config.py
 
+(base) root@d48f2e696170:/# nano ~/.jupyter/jupyter_notebook_config.py
+# 파일 업데이트
 ## The IP address the notebook server will listen on.
 #  Default: 'localhost'
 # c.NotebookApp.ip = 'localhost'
@@ -191,10 +193,7 @@ c.NotebookApp.open_browser = False
 ## The port the notebook server will listen on (env: JUPYTER_PORT).
 #  Default: 8888
 c.NotebookApp.port = 9999
-
-
-
-[jupyter notebook]
+# 끝.
 
 (base) root@d48f2e696170:/# ipython
 Python 3.8.8 (default, Apr 13 2021, 19:58:26)
@@ -234,14 +233,17 @@ flask==1.1.2
 waitress==2.1.2
 keras==2.10.0
 tensorflow==2.10.0
-pillow==8.4.0
-matplotlib==3.4.3
 transformers==4.8.0
 numpy==1.23
 pandas==1.3.4
+matplotlib==3.4.3
 pillow==8.4.0
 
 (base) root@d48f2e696170:/# pip install -r requirements.txt
+# $ export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+# or Setting the environment variable in a script: 
+# import os
+# os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION'] = 'python'
 
 
 
