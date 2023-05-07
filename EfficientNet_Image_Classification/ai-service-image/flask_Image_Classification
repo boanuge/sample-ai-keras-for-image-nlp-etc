@@ -1,0 +1,5 @@
+# chmod 777 flask_Image_Classification
+# ps -ef | grep flask
+# kill -9 <PID>
+
+nohup python flask_Image_Classification.py > error.log &
