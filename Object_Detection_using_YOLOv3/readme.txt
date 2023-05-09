@@ -70,13 +70,16 @@ $ sudo dpkg -i cuda-keyring_1.0-1_all.deb
 $ sudo apt-get update
 $ sudo apt-get install cuda
 $ sudo apt-get install nvidia-gds
+$ sudo apt-get install libcudnn8
+$ sudo apt-get install libcudnn8-dev
 $ sudo reboot
 
 #CUDA 환경변수 등록
 $ nano ~/.bashrc
 # 파일 제일 윗 부분에 붙여 넣을것
-export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export CUDA_HOME=/usr/local/cuda-12.1
+export PATH=/usr/local/cuda-12.1/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64:$LD_LIBRARY_PATH
 # 끝.
 $ source ~/.bashrc
 
