@@ -89,6 +89,16 @@ Built on Mon_Apr__3_17:16:06_PDT_2023
 Cuda compilation tools, release 12.1, V12.1.105
 Build cuda_12.1.r12.1/compiler.32688072_0
 
+$ lspci | grep -i nvidia
+00:1e.0 3D controller: NVIDIA Corporation TU104GL [Tesla T4] (rev a1)
+
+$ sudo dpkg --add-architecture i386
+$ sudo apt-get install libnvidia-compute-495:i386 libnvidia-decode-495:i386 \
+ libnvidia-encode-495:i386 libnvidia-extra-495:i386 libnvidia-fbc1-495:i386 \
+ libnvidia-gl-495:i386
+$ sudo apt-get install libcudnn8
+$ sudo reboot
+
 
 
 [AI 서버로 FTP 접속]
