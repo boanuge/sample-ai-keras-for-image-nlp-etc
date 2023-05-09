@@ -40,26 +40,48 @@ sudo passwd root
 sudo passwd metaverse
 
 [NVIDIA GPU]
-#cuda 설치
-cd /tmp
-wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
-sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
-wget https://developer.download.nvidia.com/compute/cuda/11.1.1/local_installers/cuda-repo-ubuntu2004-11-1-local_11.1.1-455.32.00-1_amd64.deb
-sudo dpkg -i cuda-repo-ubuntu2004-11-1-local_11.1.1-455.32.00-1_amd64.deb
-sudo apt-key add /var/cuda-repo-ubuntu2004-11-1-local/7fa2af80.pub
-sudo apt-get update
-sudo apt-get -y install cuda # 에러발생시 무시
-sudo apt install nvidia-cuda-toolkit
+#CUDA 설치
+$ sudo lshw -c display
+  *-display:1 UNCLAIMED
+       description: 3D controller
+       product: TU104GL [Tesla T4]
+       vendor: NVIDIA Corporation
+       physical id: 1e
+       bus info: pci@0000:00:1e.0
+       version: a1
+       width: 64 bits
+       clock: 33MHz
+       capabilities: pm pciexpress msix cap_list
+       configuration: latency=0
+       resources: iomemory:80-7f iomemory:80-7f memory:fd000000-fdffffff memory:840000000-84fffffff memory:850000000-851ffffff
+$ lspci | grep -i nvidia
+00:1e.0 3D controller: NVIDIA Corporation TU104GL [Tesla T4] (rev a1)
 
-#cuda 환경변수 등록
-nano ~/.bashrc
-export PATH=/usr/local/cuda-11.1/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda-11.1/lib64:$LD_LIBRARY_PATH
+$ sudo dpkg --add-architecture i386
+$ sudo apt-get update
+$ sudo apt-get install libnvidia-compute-495:i386 libnvidia-decode-495:i386 \
+ libnvidia-encode-495:i386 libnvidia-extra-495:i386 libnvidia-fbc1-495:i386 \
+ libnvidia-gl-495:i386
+$ sudo reboot
 
-source ~/.bashrc
+$ cd /tmp
+$ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb
+$ sudo dpkg -i cuda-keyring_1.0-1_all.deb
+$ sudo apt-get update
+$ sudo apt-get install cuda
+$ sudo apt-get install nvidia-gds
+$ sudo reboot
 
-#cuda 버전 확인
-nvcc --version
+#CUDA 환경변수 등록
+$ nano ~/.bashrc
+# 파일 제일 윗 부분에 붙여 넣을것
+export PATH=/usr/local/cuda-12.0/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-12.0/lib64:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+# 끝.
+$ source ~/.bashrc
+
+#CUDA 버전 확인
+$ nvcc --version
 
 
 
