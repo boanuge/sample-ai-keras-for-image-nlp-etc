@@ -75,13 +75,10 @@ $ sudo reboot
 #CUDA 환경변수 등록
 $ nano ~/.bashrc
 # 파일 제일 윗 부분에 붙여 넣을것
-export PATH=/usr/local/cuda-12.0/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-12.0/lib64:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 # 끝.
 $ source ~/.bashrc
-
-#CUDA 버전 확인
-$ nvcc --version
 
 
 
