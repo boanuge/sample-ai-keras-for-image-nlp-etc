@@ -40,48 +40,54 @@ sudo passwd root
 sudo passwd metaverse
 
 [NVIDIA GPU]
-#CUDA 설치
-$ sudo lshw -c display
-  *-display:1 UNCLAIMED
-       description: 3D controller
-       product: TU104GL [Tesla T4]
-       vendor: NVIDIA Corporation
-       physical id: 1e
-       bus info: pci@0000:00:1e.0
-       version: a1
-       width: 64 bits
-       clock: 33MHz
-       capabilities: pm pciexpress msix cap_list
-       configuration: latency=0
-       resources: iomemory:80-7f iomemory:80-7f memory:fd000000-fdffffff memory:840000000-84fffffff memory:850000000-851ffffff
-$ lspci | grep -i nvidia
-00:1e.0 3D controller: NVIDIA Corporation TU104GL [Tesla T4] (rev a1)
+Step 1: Remove existing Nvidia drivers if any
 
-$ sudo dpkg --add-architecture i386
+$ sudo apt-get purge nvidia*
+$ sudo apt-get autoremove
+$ sudo apt-get autoclean
+$ sudo rm -rf /usr/local/cuda*
+
+Step 2: Add Graphic Drivers PPA
+
+$ sudo add-apt-repository ppa:graphics-drivers/ppa
 $ sudo apt-get update
-$ sudo apt-get install libnvidia-compute-495:i386 libnvidia-decode-495:i386 \
- libnvidia-encode-495:i386 libnvidia-extra-495:i386 libnvidia-fbc1-495:i386 \
- libnvidia-gl-495:i386
+
+Step 3: Install the driver with the best version
+
+$ sudo apt-get install nvidia-driver-460
+
+Step 4: Reboot the computer after installation
+
 $ sudo reboot
 
+Download: CUDA Toolkit 12.1 Update 1
+https://developer.nvidia.com/cuda-downloads
+
 $ cd /tmp
+
 $ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb
 $ sudo dpkg -i cuda-keyring_1.0-1_all.deb
 $ sudo apt-get update
-$ sudo apt-get install cuda
-$ sudo apt-get install nvidia-gds
-$ sudo apt-get install libcudnn8
-$ sudo apt-get install libcudnn8-dev
+$ sudo apt-get -y install cuda
+
+$ sudo nano ~/.bashrc
+
+# 파일 제일 윗 부분에 붙여 넣을것
+export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+export CUDA_HOME=/usr/local/cuda-12.1
+# 끝.
+
+$ source ~/.bashrc
+
 $ sudo reboot
 
-#CUDA 환경변수 등록
-$ nano ~/.bashrc
-# 파일 제일 윗 부분에 붙여 넣을것
-export CUDA_HOME=/usr/local/cuda-12.1
-export PATH=/usr/local/cuda-12.1/bin:$PATH
-export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64:$LD_LIBRARY_PATH
-# 끝.
-$ source ~/.bashrc
+To verify the installation, check `nvidia-smi` and `nvcc --version`.
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2023 NVIDIA Corporation
+Built on Mon_Apr__3_17:16:06_PDT_2023
+Cuda compilation tools, release 12.1, V12.1.105
+Build cuda_12.1.r12.1/compiler.32688072_0
 
 
 
