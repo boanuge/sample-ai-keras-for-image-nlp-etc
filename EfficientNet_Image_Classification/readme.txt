@@ -45,64 +45,68 @@ sudo passwd root
 sudo passwd metaverse
 
 [NVIDIA GPU]
-Step 1: Remove existing Nvidia drivers if any
+
+# Remove existing nvidia drivers if any
 
 $ sudo apt-get purge nvidia*
 $ sudo apt-get autoremove
 $ sudo apt-get autoclean
 $ sudo rm -rf /usr/local/cuda*
 
-Step 2: Add Graphic Drivers PPA
+# Update installing packages
 
-$ sudo add-apt-repository ppa:graphics-drivers/ppa
 $ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get install build-essential
 
-Step 3: Install the driver with the best version (마지막에 한번더 설치)
+# Install the nvidia driver
 
-$ sudo apt-get install nvidia-driver-460
-
-Step 4: Reboot the computer after installation
-
+$ sudo apt install nvidia-driver-525
+$ sudo apt-get install dkms nvidia-modprobe
 $ sudo reboot
+$ watch -d -n 0.2 nvidia-smi
 
-Download: CUDA Toolkit 12.1 Update 1
-https://developer.nvidia.com/cuda-downloads
+# CUDA Toolkit 11.7 Update 1 Downloads
+https://developer.nvidia.com/cuda-11-7-1-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local
 
 $ cd /tmp
-
-$ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb
-$ sudo dpkg -i cuda-keyring_1.0-1_all.deb
+$ wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin
+$ sudo mv cuda-ubuntu2204.pin /etc/apt/preferences.d/cuda-repository-pin-600
+$ wget https://developer.download.nvidia.com/compute/cuda/11.7.1/local_installers/cuda-repo-ubuntu2204-11-7-local_11.7.1-515.65.01-1_amd64.deb
+$ sudo dpkg -i cuda-repo-ubuntu2204-11-7-local_11.7.1-515.65.01-1_amd64.deb
+$ sudo cp /var/cuda-repo-ubuntu2204-11-7-local/cuda-*-keyring.gpg /usr/share/keyrings/
 $ sudo apt-get update
 $ sudo apt-get -y install cuda
-
-$ sudo nano ~/.bashrc
-
-# 파일 제일 윗 부분에 붙여 넣을것
-export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda-12.1/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-export CUDA_HOME=/usr/local/cuda-12.1
-# 끝.
-
-$ source ~/.bashrc
-
 $ sudo reboot
 
-To verify the installation, check `nvidia-smi` and `nvcc --version`.
-nvcc: NVIDIA (R) Cuda compiler driver
-Copyright (c) 2005-2023 NVIDIA Corporation
-Built on Mon_Apr__3_17:16:06_PDT_2023
-Cuda compilation tools, release 12.1, V12.1.105
-Build cuda_12.1.r12.1/compiler.32688072_0
+# 환경 패스 설정
 
-$ lspci | grep -i nvidia
-00:1e.0 3D controller: NVIDIA Corporation TU104GL [Tesla T4] (rev a1)
-
-$ sudo dpkg --add-architecture i386
-$ sudo apt-get install libnvidia-compute-495:i386 libnvidia-decode-495:i386 \
- libnvidia-encode-495:i386 libnvidia-extra-495:i386 libnvidia-fbc1-495:i386 \
- libnvidia-gl-495:i386
-$ sudo apt-get install libcudnn8
+$ sudo sh -c "echo 'export PATH=$PATH:/usr/local/cuda-11.7/bin'>> /etc/profile"
+$ sudo sh -c "echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.7/lib64'>> /etc/profile"
+$ sudo sh -c "echo 'export CUDARDIR=/usr/local/cuda-11.7'>> /etc/profile"
+$ source /etc/profile
 $ sudo reboot
+
+# Download cuDNN v8.7.0 (November 28th, 2022) for CUDA 11.x
+https://developer.nvidia.com/downloads/c118-cudnn-linux-8664-87084cuda11-archivetarz
+cudnn-linux-x86_64-8.7.0.84_cuda11-archive.tar.xz <-- 865,648KB file size
+
+$ cd /tmp
+$ tar -xvf cudnn-linux-x86_64-8.7.0.84_cuda11-archive.tar.xz
+$ sudo cp cudnn-linux-x86_64-8.7.0.84_cuda11-archive/include/cudnn* /usr/local/cuda/include
+$ sudo cp cudnn-linux-x86_64-8.7.0.84_cuda11-archive/lib/libcudnn* /usr/local/cuda/lib64
+$ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_adv_train.so.8.4.1 /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_adv_train.so.8
+$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8.4.1  /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8
+$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8.4.1  /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8
+$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8.4.1  /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8
+$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_ops_train.so.8.4.1  /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_ops_train.so.8
+$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8.4.1 /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8
+$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn.so.8.4.1 /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn.so.8
+
+# Monitor GPU-Util usage(%)
+
+$ watch -d -n 0.2 nvidia-smi
 
 
 
