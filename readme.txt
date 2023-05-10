@@ -57,7 +57,7 @@ Step 2: Add Graphic Drivers PPA
 $ sudo add-apt-repository ppa:graphics-drivers/ppa
 $ sudo apt-get update
 
-Step 3: Install the driver with the best version
+Step 3: Install the driver with the best version (마지막에 한번더 설치)
 
 $ sudo apt-get install nvidia-driver-460
 
