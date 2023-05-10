@@ -3,8 +3,8 @@ Route53 : live.ai-api.com (도메인생성)
 --> ALB : LIVE-ALB-AI-API (로드밸런서/리스너추가)
 --> TG : LIVE-TG-AI-API-5001 ~ LIVE-TG-AI-API-5009 (타겟그룹/포워딩추가)
 --> AMI : LIVE-AMI-AI-API-V1 ~ LIVE-AMI-AI-API-V9 (이미지생성)
---> LT : LIVE-LT-AI-API (런치템플릿/이미지추가)
---> ASG : LIVE-ASG-AI-API (오토스케일링정책)
+--> LT : LIVE-LT-AI-API (런치템플릿/새버전생성/이미지변경)
+--> ASG : LIVE-ASG-AI-API (오토스케일링정책/인스턴스새로고침)
 1분 내 200개 요청시 : EC2 추가 생성 오토스케일링그룹 내 자동크기조정에서 변경 가능
 - 요청 타임아웃 10초일 때 이미지모델 추론서버 하나당 1분 내 약 100개 정도 핸들링
 Desired/Minimum capacity : 2
