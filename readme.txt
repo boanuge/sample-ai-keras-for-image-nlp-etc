@@ -81,9 +81,9 @@ $ sudo reboot
 
 # 환경 패스 설정
 
-$ sudo sh -c "echo 'export PATH=$PATH:/usr/local/cuda-11.7/bin'>> /etc/profile"
-$ sudo sh -c "echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-11.7/lib64'>> /etc/profile"
-$ sudo sh -c "echo 'export CUDARDIR=/usr/local/cuda-11.7'>> /etc/profile"
+$ sudo sh -c "echo 'export PATH=$PATH:/usr/local/cuda-12.1/bin'>> /etc/profile"
+$ sudo sh -c "echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-12.1/lib64'>> /etc/profile"
+$ sudo sh -c "echo 'export CUDARDIR=/usr/local/cuda-12.1'>> /etc/profile"
 $ source /etc/profile
 $ sudo reboot
 
@@ -96,13 +96,13 @@ $ tar -xvf cudnn-linux-x86_64-8.7.0.84_cuda11-archive.tar.xz
 $ sudo cp cudnn-linux-x86_64-8.7.0.84_cuda11-archive/include/cudnn* /usr/local/cuda/include
 $ sudo cp cudnn-linux-x86_64-8.7.0.84_cuda11-archive/lib/libcudnn* /usr/local/cuda/lib64
 $ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
-$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_adv_train.so.8.4.1 /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_adv_train.so.8
-$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8.4.1  /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8
-$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8.4.1  /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8
-$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8.4.1  /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8
-$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_ops_train.so.8.4.1  /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_ops_train.so.8
-$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8.4.1 /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8
-$ sudo ln -sf /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn.so.8.4.1 /usr/local/cuda-11/targets/x86_64-linux/lib/libcudnn.so.8
+$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_train.so.8.4.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_train.so.8
+$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8.4.1  /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8
+$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8.4.1  /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8
+$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8.4.1  /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8
+$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_train.so.8.4.1  /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_train.so.8
+$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8.4.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8
+$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn.so.8.4.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn.so.8
 
 # Monitor GPU-Util usage(%)
 
