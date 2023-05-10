@@ -80,12 +80,12 @@ $ sudo apt-get -y install cuda
 $ sudo reboot
 
 # 환경 패스 설정
-
-$ sudo sh -c "echo 'export PATH=$PATH:/usr/local/cuda-12.1/bin'>> /etc/profile"
-$ sudo sh -c "echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-12.1/lib64'>> /etc/profile"
-$ sudo sh -c "echo 'export CUDARDIR=/usr/local/cuda-12.1'>> /etc/profile"
-$ source /etc/profile
-$ sudo reboot
+$ nano ~/.bashrc
+# 파일 제일 위쪽에 붙여 넣을것
+export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+# 끝.
+$ source ~/.bashrc
 
 # Download cuDNN v8.7.0 (November 28th, 2022) for CUDA 11.x
 https://developer.nvidia.com/downloads/c118-cudnn-linux-8664-87084cuda11-archivetarz
