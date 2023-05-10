@@ -15,8 +15,7 @@ if gpus:
     print("GPU memory allocation(",gpu_memory_limit,")",
           "# of Physical GPU(",len(gpus),") # of Logical GPU(",len(logical_gpus),")")
   except RuntimeError as e:
-    # Virtual devices must be set before GPUs have been initialized
-    print(e)
+    print(e) # Virtual devices must be set before GPUs have been initialized
 
 master_url_root = "https://raw.githubusercontent.com/numenta/NAB/master/data/"
 
