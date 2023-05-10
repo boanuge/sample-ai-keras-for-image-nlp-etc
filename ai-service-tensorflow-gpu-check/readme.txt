@@ -12,7 +12,7 @@ pip install matplotlib pandas
 ## GPU에 할당(사용)되는 메모리 크기 제한
 import tensorflow as tf
 gpus = tf.config.experimental.list_physical_devices('GPU')
-gpu_memory_limit=1024 # only allocate 1GB of memory on the gpus[0], i.e. first GPU
+gpu_memory_limit=10240 # only allocate 10GB of memory on the gpus[0], i.e. first GPU
 if gpus:
   try:
     tf.config.experimental.set_virtual_device_configuration(
@@ -21,5 +21,4 @@ if gpus:
     print("GPU memory allocation(",gpu_memory_limit,")",
           "# of Physical GPU(",len(gpus),") # of Logical GPU(",len(logical_gpus),")")
   except RuntimeError as e:
-    # Virtual devices must be set before GPUs have been initialized
-    print(e)
+    print(e) # Virtual devices must be set before GPUs have been initialized
