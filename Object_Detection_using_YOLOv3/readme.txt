@@ -79,14 +79,6 @@ $ sudo apt-get update
 $ sudo apt-get -y install cuda
 $ sudo reboot
 
-# 환경 패스 설정
-$ nano ~/.bashrc
-# 파일 제일 위쪽에 붙여 넣을것
-export PATH=/usr/local/cuda-12.1/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-# 끝.
-$ source ~/.bashrc
-
 # Download cuDNN v8.7.0 (November 28th, 2022) for CUDA 11.x
 https://developer.nvidia.com/downloads/c118-cudnn-linux-8664-87084cuda11-archivetarz
 cudnn-linux-x86_64-8.7.0.84_cuda11-archive.tar.xz <-- 865,648KB file size
@@ -103,6 +95,26 @@ $ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_infer.s
 $ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_train.so.8.4.1  /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_train.so.8
 $ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8.4.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8
 $ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn.so.8.4.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn.so.8
+
+# 추가 작업 : 다운그레이드 12.1 --> 11.7
+
+$ sudo dpkg --add-architecture i386
+$ sudo apt-get install libnvidia-compute-495:i386 libnvidia-decode-495:i386 \
+ libnvidia-encode-495:i386 libnvidia-extra-495:i386 libnvidia-fbc1-495:i386 \
+ libnvidia-gl-495:i386
+$ sudo apt-get install nvidia-gds
+$ sudo apt-get install libcudnn8
+$ sudo apt-get install libcudnn8-dev
+$ sudo apt-get install cuda-11.7
+$ sudo reboot
+
+# 환경 패스 설정
+$ nano ~/.bashrc
+# 파일 제일 위쪽에 붙여 넣을것
+export PATH=/usr/local/cuda-11.7/bin${PATH:+:${PATH}}
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+# 끝.
+$ source ~/.bashrc
 
 # Monitor GPU-Util usage(%)
 
