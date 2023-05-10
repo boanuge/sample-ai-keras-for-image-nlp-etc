@@ -44,7 +44,7 @@ IP version, Type, Protocol, Port range, Source, Description
 sudo passwd root
 sudo passwd metaverse
 
-[NVIDIA GPU]
+[NVIDIA GPU to use CUDA]
 
 # Remove existing nvidia drivers if any
 
@@ -79,24 +79,7 @@ $ sudo apt-get update
 $ sudo apt-get -y install cuda
 $ sudo reboot
 
-# Download cuDNN v8.7.0 (November 28th, 2022) for CUDA 11.x
-https://developer.nvidia.com/downloads/c118-cudnn-linux-8664-87084cuda11-archivetarz
-cudnn-linux-x86_64-8.7.0.84_cuda11-archive.tar.xz <-- 865,648KB file size
-
-$ cd /tmp
-$ tar -xvf cudnn-linux-x86_64-8.7.0.84_cuda11-archive.tar.xz
-$ sudo cp cudnn-linux-x86_64-8.7.0.84_cuda11-archive/include/cudnn* /usr/local/cuda/include
-$ sudo cp cudnn-linux-x86_64-8.7.0.84_cuda11-archive/lib/libcudnn* /usr/local/cuda/lib64
-$ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
-$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_train.so.8.4.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_train.so.8
-$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8.4.1  /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8
-$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8.4.1  /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8
-$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8.4.1  /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8
-$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_train.so.8.4.1  /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_ops_train.so.8
-$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8.4.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8
-$ sudo ln -sf /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn.so.8.4.1 /usr/local/cuda-12.1/targets/x86_64-linux/lib/libcudnn.so.8
-
-# 추가 작업 : 다운그레이드 12.1 --> 11.7
+# 추가 작업 (다운그레이드) 12.1 --> 11.7
 
 $ sudo dpkg --add-architecture i386
 $ sudo apt-get install libnvidia-compute-495:i386 libnvidia-decode-495:i386 \
@@ -115,6 +98,24 @@ export PATH=/usr/local/cuda-11.7/bin${PATH:+:${PATH}}
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
 # 끝.
 $ source ~/.bashrc
+
+# Download cuDNN v8.7.0 (November 28th, 2022) for CUDA 11.x
+https://developer.nvidia.com/downloads/c118-cudnn-linux-8664-87084cuda11-archivetarz
+cudnn-linux-x86_64-8.7.0.84_cuda11-archive.tar.xz <-- 865,648KB file size
+
+$ cd /tmp
+$ tar -xvf cudnn-linux-x86_64-8.7.0.84_cuda11-archive.tar.xz
+$ sudo cp cudnn-linux-x86_64-8.7.0.84_cuda11-archive/include/cudnn* /usr/local/cuda/include
+$ sudo cp cudnn-linux-x86_64-8.7.0.84_cuda11-archive/lib/libcudnn* /usr/local/cuda/lib64
+$ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+$ sudo ln -sf /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn_adv_train.so.8.4.1 /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn_adv_train.so.8
+$ sudo ln -sf /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8.4.1  /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn_ops_infer.so.8
+$ sudo ln -sf /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8.4.1  /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn_cnn_train.so.8
+$ sudo ln -sf /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8.4.1  /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn_adv_infer.so.8
+$ sudo ln -sf /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn_ops_train.so.8.4.1  /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn_ops_train.so.8
+$ sudo ln -sf /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8.4.1 /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn_cnn_infer.so.8
+$ sudo ln -sf /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn.so.8.4.1 /usr/local/cuda-11.7/targets/x86_64-linux/lib/libcudnn.so.8
+$ sudo reboot
 
 # Monitor GPU-Util usage(%)
 
