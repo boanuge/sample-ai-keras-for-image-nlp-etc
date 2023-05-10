@@ -1,19 +1,19 @@
 import numpy as np
 import pandas as pd
 from tensorflow import keras
-from tensorflow.keras import layers
+from keras import layers
 from matplotlib import pyplot as plt
 import tensorflow as tf
-# GPU에 할당되는 전체 메모리 크기를 제한
+# GPU에 할당(사용)되는 메모리 크기 제한
 gpus = tf.config.experimental.list_physical_devices('GPU')
+gpu_memory_limit=1024 # only allocate 1GB of memory on the gpus[0], i.e. first GPU
 if gpus:
-  # Restrict TensorFlow to only allocate 1GB of memory on the first GPU
   try:
     tf.config.experimental.set_virtual_device_configuration(
-        gpus[0],
-        [tf.config.experimental.VirtualDeviceConfiguration(memory_limit=1024)])
+        gpus[0],[tf.config.experimental.VirtualDeviceConfiguration(memory_limit=gpu_memory_limit)])
     logical_gpus = tf.config.experimental.list_logical_devices('GPU')
-    print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+    print("GPU memory allocation(",gpu_memory_limit,")",
+          "# of Physical GPU(",len(gpus),") # of Logical GPU(",len(logical_gpus),")")
   except RuntimeError as e:
     # Virtual devices must be set before GPUs have been initialized
     print(e)
