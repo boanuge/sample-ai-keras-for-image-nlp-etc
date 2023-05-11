@@ -81,13 +81,15 @@ $ sudo reboot
 
 # 추가 작업 (다운그레이드) 12.1 --> 11.7
 
+$ sudo apt update && rm -rf /var/lib/apt/lists/*
+$ sudo add-apt-repository multiverse
+$ sudo apt update
 $ sudo dpkg --add-architecture i386
 $ sudo apt-get install libnvidia-compute-495:i386 libnvidia-decode-495:i386 \
  libnvidia-encode-495:i386 libnvidia-extra-495:i386 libnvidia-fbc1-495:i386 \
  libnvidia-gl-495:i386
+$ sudo apt install nvidia-cuda-toolkit
 $ sudo apt-get install nvidia-gds
-$ sudo apt-get install libcudnn8
-$ sudo apt-get install libcudnn8-dev
 $ sudo apt-get install cuda-11.7
 $ sudo reboot
 
