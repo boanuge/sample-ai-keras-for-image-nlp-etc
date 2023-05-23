@@ -352,3 +352,34 @@ WantedBy=multi-user.target
              └─541 /home/metaverse/anaconda3/bin/python flask_Image_Classification.py
 
 (base) root@d48f2e696170:/#
+
+[주피터 노트북 자동실행]
+
+$ sudo nano /etc/systemd/system/jupyter.service
+# 파일 내용
+
+[Unit]
+Description=Jupyter Notebook
+After=network.target
+
+[Service]
+Type=simple
+User=metaverse
+ExecStart=/home/gbike/anaconda3/bin/jupyter notebook --allow-root
+
+[Install]
+WantedBy=multi-user.target
+# 끝.
+
+$ sudo systemctl enable jupyter.service
+$ sudo systemctl start jupyter.service
+$ sudo systemctl status jupyter.service
+● jupyter.service - Jupyter Notebook
+     Loaded: loaded (/etc/systemd/system/jupyter.service; enabled; vendor preset: enabled)
+     Active: active (running) since Wed 2023-05-24 08:25:09 KST; 3min 1s ago
+   Main PID: 500 (jupyter-noteboo)
+      Tasks: 1 (limit: 18828)
+     Memory: 123.1M
+        CPU: 1.413s
+     CGroup: /system.slice/jupyter.service
+             └─500 /home/metaverse/anaconda3/bin/python /home/metaverse/anaconda3/bin/jupyter-notebook --allow-root
