@@ -75,6 +75,48 @@ question = "What is the capital of France?"
 answer = model.generate(question)
 print(answer)
 '''
+# Write the code to finetune the ChatGPT engine on a dataset of questions and answers about the topic?
+'''
+import openai
+
+# Set up your OpenAI API credentials
+openai.api_key = 'YOUR_OPENAI_API_KEY'
+
+# Load your dataset of questions and answers
+dataset = [
+    {
+        'question': 'What is the capital of France?',
+        'answer': 'The capital of France is Paris.'
+    },
+    {
+        'question': 'Who wrote the novel "Pride and Prejudice"?',
+        'answer': 'The novel "Pride and Prejudice" was written by Jane Austen.'
+    },
+    # Add more question-answer pairs from your dataset
+]
+
+# Prepare the training data
+training_data = []
+for item in dataset:
+    training_data.append(f"question: {item['question']}\nanswer: {item['answer']}")
+
+# Fine-tune the ChatGPT engine
+fine_tuned_model = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    examples=training_data,
+    instructions="Answer customer questions",
+    prompt_length=10,
+    max_tokens=100,
+    n=1,
+    epochs=3
+)
+
+# Save the fine-tuned model
+fine_tuned_model.save("fine_tuned_chatgpt")
+
+# Load the fine-tuned model
+loaded_model = openai.ChatCompletion.load("fine_tuned_chatgpt")
+'''
 # Why the number of epochs are 10?
 '''
 The number of epochs is a hyperparameter that defines the number of times that the learning algorithm will work through the entire training dataset.
