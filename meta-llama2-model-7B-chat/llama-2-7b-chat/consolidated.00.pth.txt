@@ -1,0 +1,1 @@
+"consolidated.00.pth" File is required which has 13 GBytes file size.
