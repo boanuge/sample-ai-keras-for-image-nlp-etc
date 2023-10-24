@@ -1,0 +1,94 @@
+(base) USERA:~/AI_test/llama$ ./download.sh
+-bash: ./download.sh: Permission denied
+(base) USERA:~/AI_test/llama$ chmod 777 download.sh
+(base) USERA:~/AI_test/llama$ ./download.sh
+Enter the URL from email: https://download.llamameta.net/*?Policy=eyJTdGF0ZW1lbnQiOlt7InVuaXF1ZV9oYXNoIjoidHBmMGoyZ21jYW1hdGswNWZudThtbnNxIiwiUmVzb3VyY2UiOiJodHRwczpcL1wvZG93bmxvYWQubGxhbWFtZXRhLm5ldFwvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5ODEwMTcxM319fV19&Signature=roccuapdHKXiNkSxOftPW6XAusvA8r9pNGsaIqLbB-5oYjRvB6hbFbt8q3WxQeCmpBuAF5FgysShJqWPLwhyMYDWdJ%7ElOEw4t0pJHr8G-5KnfKg2zUoQUfTQfJOgZQ-KLU8E%7Eo9aPUeenmT9TQXDh8PaS3T04%7ETBuTLgphpUFzG8DIRZms%7Em7NDwhloS1%7EPz1TG-5h10uGrOE88J59cakVyDu2rGFn1-oxOC4zvrDAe35HkH9n5wHttaAsT6gqG-AwNAF2L3Dmq6blg%7Eaidfbb2zy-ylU6w1ZDMNnA9ElU47sRJ1n-60X8QY8Dr%7EcMIj1QyEodhyPiGrQatlMIKmWA__&Key-Pair-Id=K15QRJLYKIFSLZ&Download-Request-ID=656827516624425
+
+Enter the list of models to download without spaces (7B,13B,70B,7B-chat,13B-chat,70B-chat), or press Enter for all: 7B-chat
+Downloading LICENSE and Acceptable Usage Policy
+--2023-10-23 09:24:32--  https://download.llamameta.net/LICENSE?Policy=eyJTdGF0ZW1lbnQiOlt7InVuaXF1ZV9oYXNoIjoidHBmMGoyZ21jYW1hdGswNWZudThtbnNxIiwiUmVzb3VyY2UiOiJodHRwczpcL1wvZG93bmxvYWQubGxhbWFtZXRhLm5ldFwvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5ODEwMTcxM319fV19&Signature=roccuapdHKXiNkSxOftPW6XAusvA8r9pNGsaIqLbB-5oYjRvB6hbFbt8q3WxQeCmpBuAF5FgysShJqWPLwhyMYDWdJ%7ElOEw4t0pJHr8G-5KnfKg2zUoQUfTQfJOgZQ-KLU8E%7Eo9aPUeenmT9TQXDh8PaS3T04%7ETBuTLgphpUFzG8DIRZms%7Em7NDwhloS1%7EPz1TG-5h10uGrOE88J59cakVyDu2rGFn1-oxOC4zvrDAe35HkH9n5wHttaAsT6gqG-AwNAF2L3Dmq6blg%7Eaidfbb2zy-ylU6w1ZDMNnA9ElU47sRJ1n-60X8QY8Dr%7EcMIj1QyEodhyPiGrQatlMIKmWA__&Key-Pair-Id=K15QRJLYKIFSLZ&Download-Request-ID=656827516624425
+Resolving download.llamameta.net (download.llamameta.net)... 54.230.176.54, 54.230.176.31, 54.230.176.25, ...
+Connecting to download.llamameta.net (download.llamameta.net)|54.230.176.54|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 7020 (6.9K) [binary/octet-stream]
+Saving to: ‘./LICENSE’
+
+./LICENSE                                       100%[====================================================================================================>]   6.86K  --.-KB/s    in 0s
+
+2023-10-23 09:24:33 (1.71 GB/s) - ‘./LICENSE’ saved [7020/7020]
+
+--2023-10-23 09:24:33--  https://download.llamameta.net/USE_POLICY.md?Policy=eyJTdGF0ZW1lbnQiOlt7InVuaXF1ZV9oYXNoIjoidHBmMGoyZ21jYW1hdGswNWZudThtbnNxIiwiUmVzb3VyY2UiOiJodHRwczpcL1wvZG93bmxvYWQubGxhbWFtZXRhLm5ldFwvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5ODEwMTcxM319fV19&Signature=roccuapdHKXiNkSxOftPW6XAusvA8r9pNGsaIqLbB-5oYjRvB6hbFbt8q3WxQeCmpBuAF5FgysShJqWPLwhyMYDWdJ%7ElOEw4t0pJHr8G-5KnfKg2zUoQUfTQfJOgZQ-KLU8E%7Eo9aPUeenmT9TQXDh8PaS3T04%7ETBuTLgphpUFzG8DIRZms%7Em7NDwhloS1%7EPz1TG-5h10uGrOE88J59cakVyDu2rGFn1-oxOC4zvrDAe35HkH9n5wHttaAsT6gqG-AwNAF2L3Dmq6blg%7Eaidfbb2zy-ylU6w1ZDMNnA9ElU47sRJ1n-60X8QY8Dr%7EcMIj1QyEodhyPiGrQatlMIKmWA__&Key-Pair-Id=K15QRJLYKIFSLZ&Download-Request-ID=656827516624425
+Resolving download.llamameta.net (download.llamameta.net)... 54.230.176.54, 54.230.176.31, 54.230.176.8, ...
+Connecting to download.llamameta.net (download.llamameta.net)|54.230.176.54|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 4766 (4.7K) [binary/octet-stream]
+Saving to: ‘./USE_POLICY.md’
+
+./USE_POLICY.md                                 100%[====================================================================================================>]   4.65K  --.-KB/s    in 0s
+
+2023-10-23 09:24:33 (30.1 MB/s) - ‘./USE_POLICY.md’ saved [4766/4766]
+
+Downloading tokenizer
+--2023-10-23 09:24:33--  https://download.llamameta.net/tokenizer.model?Policy=eyJTdGF0ZW1lbnQiOlt7InVuaXF1ZV9oYXNoIjoidHBmMGoyZ21jYW1hdGswNWZudThtbnNxIiwiUmVzb3VyY2UiOiJodHRwczpcL1wvZG93bmxvYWQubGxhbWFtZXRhLm5ldFwvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5ODEwMTcxM319fV19&Signature=roccuapdHKXiNkSxOftPW6XAusvA8r9pNGsaIqLbB-5oYjRvB6hbFbt8q3WxQeCmpBuAF5FgysShJqWPLwhyMYDWdJ%7ElOEw4t0pJHr8G-5KnfKg2zUoQUfTQfJOgZQ-KLU8E%7Eo9aPUeenmT9TQXDh8PaS3T04%7ETBuTLgphpUFzG8DIRZms%7Em7NDwhloS1%7EPz1TG-5h10uGrOE88J59cakVyDu2rGFn1-oxOC4zvrDAe35HkH9n5wHttaAsT6gqG-AwNAF2L3Dmq6blg%7Eaidfbb2zy-ylU6w1ZDMNnA9ElU47sRJ1n-60X8QY8Dr%7EcMIj1QyEodhyPiGrQatlMIKmWA__&Key-Pair-Id=K15QRJLYKIFSLZ&Download-Request-ID=656827516624425
+Resolving download.llamameta.net (download.llamameta.net)... 54.230.176.54, 54.230.176.8, 54.230.176.31, ...
+Connecting to download.llamameta.net (download.llamameta.net)|54.230.176.54|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 499723 (488K) [binary/octet-stream]
+Saving to: ‘./tokenizer.model’
+
+./tokenizer.model                               100%[====================================================================================================>] 488.01K  --.-KB/s    in 0.03s
+
+2023-10-23 09:24:33 (13.6 MB/s) - ‘./tokenizer.model’ saved [499723/499723]
+
+--2023-10-23 09:24:33--  https://download.llamameta.net/tokenizer_checklist.chk?Policy=eyJTdGF0ZW1lbnQiOlt7InVuaXF1ZV9oYXNoIjoidHBmMGoyZ21jYW1hdGswNWZudThtbnNxIiwiUmVzb3VyY2UiOiJodHRwczpcL1wvZG93bmxvYWQubGxhbWFtZXRhLm5ldFwvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5ODEwMTcxM319fV19&Signature=roccuapdHKXiNkSxOftPW6XAusvA8r9pNGsaIqLbB-5oYjRvB6hbFbt8q3WxQeCmpBuAF5FgysShJqWPLwhyMYDWdJ%7ElOEw4t0pJHr8G-5KnfKg2zUoQUfTQfJOgZQ-KLU8E%7Eo9aPUeenmT9TQXDh8PaS3T04%7ETBuTLgphpUFzG8DIRZms%7Em7NDwhloS1%7EPz1TG-5h10uGrOE88J59cakVyDu2rGFn1-oxOC4zvrDAe35HkH9n5wHttaAsT6gqG-AwNAF2L3Dmq6blg%7Eaidfbb2zy-ylU6w1ZDMNnA9ElU47sRJ1n-60X8QY8Dr%7EcMIj1QyEodhyPiGrQatlMIKmWA__&Key-Pair-Id=K15QRJLYKIFSLZ&Download-Request-ID=656827516624425
+Resolving download.llamameta.net (download.llamameta.net)... 54.230.176.31, 54.230.176.8, 54.230.176.54, ...
+Connecting to download.llamameta.net (download.llamameta.net)|54.230.176.31|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 50 [binary/octet-stream]
+Saving to: ‘./tokenizer_checklist.chk’
+
+./tokenizer_checklist.chk                       100%[====================================================================================================>]      50  --.-KB/s    in 0s
+
+2023-10-23 09:24:33 (156 KB/s) - ‘./tokenizer_checklist.chk’ saved [50/50]
+
+tokenizer.model: OK
+Downloading llama-2-7b-chat
+--2023-10-23 09:24:33--  https://download.llamameta.net/llama-2-7b-chat/consolidated.00.pth?Policy=eyJTdGF0ZW1lbnQiOlt7InVuaXF1ZV9oYXNoIjoidHBmMGoyZ21jYW1hdGswNWZudThtbnNxIiwiUmVzb3VyY2UiOiJodHRwczpcL1wvZG93bmxvYWQubGxhbWFtZXRhLm5ldFwvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5ODEwMTcxM319fV19&Signature=roccuapdHKXiNkSxOftPW6XAusvA8r9pNGsaIqLbB-5oYjRvB6hbFbt8q3WxQeCmpBuAF5FgysShJqWPLwhyMYDWdJ%7ElOEw4t0pJHr8G-5KnfKg2zUoQUfTQfJOgZQ-KLU8E%7Eo9aPUeenmT9TQXDh8PaS3T04%7ETBuTLgphpUFzG8DIRZms%7Em7NDwhloS1%7EPz1TG-5h10uGrOE88J59cakVyDu2rGFn1-oxOC4zvrDAe35HkH9n5wHttaAsT6gqG-AwNAF2L3Dmq6blg%7Eaidfbb2zy-ylU6w1ZDMNnA9ElU47sRJ1n-60X8QY8Dr%7EcMIj1QyEodhyPiGrQatlMIKmWA__&Key-Pair-Id=K15QRJLYKIFSLZ&Download-Request-ID=656827516624425
+Resolving download.llamameta.net (download.llamameta.net)... 54.230.176.8, 54.230.176.54, 54.230.176.31, ...
+Connecting to download.llamameta.net (download.llamameta.net)|54.230.176.8|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 13476925163 (13G) [binary/octet-stream]
+Saving to: ‘./llama-2-7b-chat/consolidated.00.pth’
+
+./llama-2-7b-chat/consolidated.00.pth           100%[====================================================================================================>]  12.55G   126MB/s    in 88s
+
+2023-10-23 09:26:03 (145 MB/s) - ‘./llama-2-7b-chat/consolidated.00.pth’ saved [13476925163/13476925163]
+
+--2023-10-23 09:26:03--  https://download.llamameta.net/llama-2-7b-chat/params.json?Policy=eyJTdGF0ZW1lbnQiOlt7InVuaXF1ZV9oYXNoIjoidHBmMGoyZ21jYW1hdGswNWZudThtbnNxIiwiUmVzb3VyY2UiOiJodHRwczpcL1wvZG93bmxvYWQubGxhbWFtZXRhLm5ldFwvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5ODEwMTcxM319fV19&Signature=roccuapdHKXiNkSxOftPW6XAusvA8r9pNGsaIqLbB-5oYjRvB6hbFbt8q3WxQeCmpBuAF5FgysShJqWPLwhyMYDWdJ%7ElOEw4t0pJHr8G-5KnfKg2zUoQUfTQfJOgZQ-KLU8E%7Eo9aPUeenmT9TQXDh8PaS3T04%7ETBuTLgphpUFzG8DIRZms%7Em7NDwhloS1%7EPz1TG-5h10uGrOE88J59cakVyDu2rGFn1-oxOC4zvrDAe35HkH9n5wHttaAsT6gqG-AwNAF2L3Dmq6blg%7Eaidfbb2zy-ylU6w1ZDMNnA9ElU47sRJ1n-60X8QY8Dr%7EcMIj1QyEodhyPiGrQatlMIKmWA__&Key-Pair-Id=K15QRJLYKIFSLZ&Download-Request-ID=656827516624425
+Resolving download.llamameta.net (download.llamameta.net)... 54.230.176.8, 54.230.176.25, 54.230.176.54, ...
+Connecting to download.llamameta.net (download.llamameta.net)|54.230.176.8|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 102 [application/json]
+Saving to: ‘./llama-2-7b-chat/params.json’
+
+./llama-2-7b-chat/params.json                   100%[====================================================================================================>]     102  --.-KB/s    in 0s
+
+2023-10-23 09:26:04 (113 MB/s) - ‘./llama-2-7b-chat/params.json’ saved [102/102]
+
+--2023-10-23 09:26:04--  https://download.llamameta.net/llama-2-7b-chat/checklist.chk?Policy=eyJTdGF0ZW1lbnQiOlt7InVuaXF1ZV9oYXNoIjoidHBmMGoyZ21jYW1hdGswNWZudThtbnNxIiwiUmVzb3VyY2UiOiJodHRwczpcL1wvZG93bmxvYWQubGxhbWFtZXRhLm5ldFwvKiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTY5ODEwMTcxM319fV19&Signature=roccuapdHKXiNkSxOftPW6XAusvA8r9pNGsaIqLbB-5oYjRvB6hbFbt8q3WxQeCmpBuAF5FgysShJqWPLwhyMYDWdJ%7ElOEw4t0pJHr8G-5KnfKg2zUoQUfTQfJOgZQ-KLU8E%7Eo9aPUeenmT9TQXDh8PaS3T04%7ETBuTLgphpUFzG8DIRZms%7Em7NDwhloS1%7EPz1TG-5h10uGrOE88J59cakVyDu2rGFn1-oxOC4zvrDAe35HkH9n5wHttaAsT6gqG-AwNAF2L3Dmq6blg%7Eaidfbb2zy-ylU6w1ZDMNnA9ElU47sRJ1n-60X8QY8Dr%7EcMIj1QyEodhyPiGrQatlMIKmWA__&Key-Pair-Id=K15QRJLYKIFSLZ&Download-Request-ID=656827516624425
+Resolving download.llamameta.net (download.llamameta.net)... 54.230.176.8, 54.230.176.54, 54.230.176.31, ...
+Connecting to download.llamameta.net (download.llamameta.net)|54.230.176.8|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 100 [binary/octet-stream]
+Saving to: ‘./llama-2-7b-chat/checklist.chk’
+
+./llama-2-7b-chat/checklist.chk                 100%[====================================================================================================>]     100  --.-KB/s    in 0s
+
+2023-10-23 09:26:06 (88.7 MB/s) - ‘./llama-2-7b-chat/checklist.chk’ saved [100/100]
+
+Checking checksums
+consolidated.00.pth: OK
+params.json: OK
+(base) USERA:~/AI_test/llama$ du -sh
+13G     .
+(base) USERA:~/AI_test/llama$
