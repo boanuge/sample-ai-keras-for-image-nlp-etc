@@ -864,6 +864,30 @@ Running on local URL:  http://127.0.0.1:7860
 To create a public link, set `share=True` in `launch()`.
 
 ================================================================================
+(textgen2) USER@192-168-0-1:~/AI_test/text-generation-webui$ python server.py --listen
+================================================================================
+
+2023-10-25 07:55:30 WARNING:
+You are potentially exposing the web UI to the entire internet without any access password.
+You can create one with the "--gradio-auth" flag like this:
+
+--gradio-auth username:password
+
+Make sure to replace username:password with your own.
+/home/gbike/anaconda3/envs/textgen2/lib/python3.10/site-packages/torch/cuda/__init__.py:611: UserWarning: Can't initialize NVML
+  warnings.warn("Can't initialize NVML")
+/home/gbike/anaconda3/envs/textgen2/lib/python3.10/site-packages/torch/cuda/__init__.py:740: UserWarning: CUDA initialization: The NVIDIA driver on your system is too old (found version 11070). Please update your GPU driver by downloading and installing a new version from the URL: http://www.nvidia.com/Download/index.aspx Alternatively, go to: https://pytorch.org to install a PyTorch version that has been compiled with your version of the CUDA driver. (Triggered internally at ../c10/cuda/CUDAFunctions.cpp:108.)
+  return torch._C._cuda_getDeviceCount() if nvml_count < 0 else nvml_count
+/home/gbike/anaconda3/envs/textgen2/lib/python3.10/site-packages/bitsandbytes/cextension.py:34: UserWarning: The installed version of bitsandbytes was compiled without GPU support. 8-bit optimizers, 8-bit multiplication, and GPU quantization are unavailable.
+  warn("The installed version of bitsandbytes was compiled without GPU support. "
+/home/gbike/anaconda3/envs/textgen2/lib/python3.10/site-packages/bitsandbytes/libbitsandbytes_cpu.so: undefined symbol: cadam32bit_grad_fp32
+2023-10-25 07:55:34 INFO:Loading the extension "gallery"...
+Running on local URL:  http://0.0.0.0:7860
+
+To create a public link, set `share=True` in `launch()`.
+
+
+================================================================================
 (textgen2) USER@192-168-0-1:~/AI_test/text-generation-webui$ python server.py --share
 ================================================================================
 
@@ -908,6 +932,8 @@ Downloading the model to models/TheBloke_Llama-2-13B-Chat-fp16
 [Web browser]
 
 http://127.0.0.1:7860
+(or)
+http://192.168.0.1:7860
 (or)
 https://0c1cf9a498bc4dcff0.gradio.live/
 
