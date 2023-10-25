@@ -975,3 +975,8 @@ When I look at the memory usage, it is maxed out until it gives up. (I only have
 
     PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
    1745 USER      20   0   14.3g  10.7g 149888 S  15.0  96.2   0:17.53 python
+
+================================================================================
+[NVIDIA GPU to use CUDA]
+================================================================================
+https://github.com/boanuge/sample-ai-keras-for-image-nlp-etc/blob/main/readme.txt
