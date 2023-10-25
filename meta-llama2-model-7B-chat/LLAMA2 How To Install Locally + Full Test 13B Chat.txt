@@ -938,6 +938,8 @@ http://192.168.0.1:7860
 https://0c1cf9a498bc4dcff0.gradio.live/
 
 [Menu tab] Model --> [Right side] Download model or LoRA --> [Type] TheBloke/Llama-2-13B-Chat-fp16 --> [Click] Download
+(or)
+[Menu tab] Model --> [Right side] Download model or LoRA --> [Type] TheBloke/Llama-2-7b-chat-fp16 --> [Click] Download
 
 [Left side] Refresh --> Model --> [Select] TheBloke_Llama-2-13B-Chat-fp16 --> [Click] Load --> [Wait few minutes]
 
@@ -963,3 +965,9 @@ Killed
 (textgen2) USER@192-168-0-1:~/AI_test/text-generation-webui$ du -sh
 25G     .
 (textgen2) USER@192-168-0-1:~/AI_test/text-generation-webui$
+
+[Reason] Unsufficient memory size
+When I look at the memory usage, it is maxed out until it gives up. (I only have 16GB of CPU Ram)
+
+    PID USER      PR  NI    VIRT    RES    SHR S  %CPU  %MEM     TIME+ COMMAND
+   1745 USER      20   0   14.3g  10.7g 149888 S  15.0  96.2   0:17.53 python
