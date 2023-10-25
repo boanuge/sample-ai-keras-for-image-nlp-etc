@@ -1,4 +1,7 @@
+================================================================================
 [AI 서버 오토스케일링 정책]
+================================================================================
+
 Route53 : live.ai-api.com (도메인생성)
 --> ALB : LIVE-ALB-AI-API (로드밸런서/리스너추가)
 --> TG : LIVE-TG-AI-API-5001 ~ LIVE-TG-AI-API-5009 (타겟그룹/포워딩추가)
@@ -29,7 +32,10 @@ system_info:
   default_user:
     name: metaverse
 
+================================================================================
 [Security Groups]
+================================================================================
+
 SG-EC2-AI-GPU
 
 IP version, Type, Protocol, Port range, Source, Description
@@ -44,7 +50,9 @@ IP version, Type, Protocol, Port range, Source, Description
 sudo passwd root
 sudo passwd metaverse
 
+================================================================================
 [NVIDIA GPU to use CUDA]
+================================================================================
 
 # Remove existing nvidia drivers if any
 
@@ -123,9 +131,19 @@ $ sudo reboot
 
 $ watch -d -n 0.2 nvidia-smi
 
+[If there is an error, try the below] error : needrestart is being skipped since dpkg has failed
 
+$ sudo mv /var/lib/dpkg/info /var/lib/dpkg/info_silent
+$ sudo mkdir /var/lib/dpkg/info
+$ sudo apt-get update
+$ sudo apt-get -f install
+$ sudo mv /var/lib/dpkg/info/* /var/lib/dpkg/info_silent
+$ sudo rm -rf /var/lib/dpkg/info
+$ sudo mv /var/lib/dpkg/info_silent /var/lib/dpkg/info
 
+================================================================================
 [AI 서버로 FTP 접속]
+================================================================================
 
 install : sudo apt-get install vsftpd
 
@@ -157,9 +175,9 @@ FileZilla Client로 FTP(파일 전송 프로토콜) 접속
 
 문자셋 --> UTF-8로 강제 설정
 
-
-
+================================================================================
 [Installing Anaconda]
+================================================================================
 
 The best way to install Anaconda is to download the latest Anaconda installer bash script, verify it, and then run it.
 Find the latest version of Anaconda for Python 3 at the Anaconda Downloads page. At the time of writing, the latest version is 2021.11.
@@ -232,9 +250,9 @@ You can now activate the installation by sourcing the ~/.bashrc file:
 
 (base) root@d48f2e696170:/# source ~/.bashrc
 
-
-
+================================================================================
 [jupyter-notebook]
+================================================================================
 
 (base) root@d48f2e696170:/# jupyter notebook --generate-config
 Writing default config to: /root/.jupyter/jupyter_notebook_config.py
@@ -307,9 +325,9 @@ pillow==8.4.0
 # import os
 # os.environ['PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION'] = 'python'
 
-
-
+================================================================================
 [reboot 후 서비스 자동실행]
+================================================================================
 
 (base) root@d48f2e696170:/# sudo nano /etc/rc.local
 
@@ -353,7 +371,9 @@ WantedBy=multi-user.target
 
 (base) root@d48f2e696170:/#
 
+================================================================================
 [주피터 노트북 자동실행]
+================================================================================
 
 $ sudo nano /etc/systemd/system/jupyter.service
 # 파일 내용
