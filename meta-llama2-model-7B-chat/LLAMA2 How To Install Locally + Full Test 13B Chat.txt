@@ -953,6 +953,8 @@ The settings for TheBloke_Llama-2-13B-Chat-fp16 have been updated.
 
 Click on "Load" to load it.
 
+[Menu tab] --> [Right side] --> [Check] cpu (if there is no GPU) 
+
 ================================================================================
 
 [Issue] https://github.com/THUDM/ChatGLM2-6B/issues/429
