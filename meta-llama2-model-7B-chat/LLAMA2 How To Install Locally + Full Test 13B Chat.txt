@@ -940,6 +940,8 @@ https://0c1cf9a498bc4dcff0.gradio.live/
 [Menu tab] Model --> [Right side] Download model or LoRA --> [Type] TheBloke/Llama-2-13B-Chat-fp16 --> [Click] Download
 (or)
 [Menu tab] Model --> [Right side] Download model or LoRA --> [Type] TheBloke/Llama-2-7b-chat-fp16 --> [Click] Download
+(or)
+[Menu tab] Model --> [Right side] Download model or LoRA --> [Type] microsoft/DialoGPT-large --> [Click] Download (TEST)
 
 [Left side] Refresh --> Model --> [Select] TheBloke_Llama-2-13B-Chat-fp16 --> [Click] Load --> [Wait few minutes]
 
