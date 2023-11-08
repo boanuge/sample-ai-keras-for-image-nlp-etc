@@ -1,1 +1,1 @@
-"llama-2-13b-chat.ggmlv3.q5_K_M.bin" File is required which has 9 GBytes file size.
+"llama-2-13b-chat.ggmlv3.q5_K_M.bin" File is 9 GBytes.
