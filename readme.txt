@@ -34,84 +34,6 @@ FileZilla Client로 FTP(파일 전송 프로토콜) 접속
 문자셋 --> UTF-8로 강제 설정
 
 ================================================================================
-[ Installing Anaconda ]
-================================================================================
-
-The best way to install Anaconda is to download the latest Anaconda installer bash script, verify it, and then run it.
-Find the latest version of Anaconda for Python 3 at the Anaconda Downloads page. At the time of writing, the latest version is 2021.11.
-Next, change to the /tmp directory on your server. This is a good directory to download ephemeral items, like the Anaconda bash script.
-
-root@d48f2e696170:/# cd /tmp
-
-Use curl to download the link that you copied from the Anaconda website. You’ll output this to a file called anaconda.sh for quicker use.
-
-root@d48f2e696170:/# sudo apt update
-root@d48f2e696170:/# sudo apt install curl
-
-root@d48f2e696170:/# curl https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh --output anaconda.sh
-
-You can now verify the data integrity of the installer with cryptographic hash verification through the SHA-256 checksum. You’ll use the sha256sum command along with the filename of the script:
-
-root@d48f2e696170:/# sha256sum anaconda.sh
-
-You’ll receive output that looks similar to this:
-
-Output
-fedf9e340039557f7b5e8a8a86affa9d299f5e9820144bd7b92ae9f7ee08ac60  anaconda.sh
-
-You should check the output against the hashes available at the Anaconda with Python 3 on 64-bit Linux page for your appropriate Anaconda version. As long as your output matches the hash displayed in the sha256 row, you’re good to go.
-
-Now you can run the script:
-
-root@d48f2e696170:/# bash anaconda.sh
-
-You’ll receive the following output:
-
-Output
-Welcome to Anaconda3 2021.11
-
-In order to continue the installation process, please review the license agreement.
-Please, press ENTER to continue (press Space)
->>>  
-Press ENTER to continue and then press ENTER to read through the license. Once you’re done reading the license, you’ll be prompted to approve the license terms:
-
-Output
-Do you approve the license terms? [yes|no]
-As long as you agree, type yes.
-
-At this point, you’ll be prompted to choose the location of the installation. You can press ENTER to accept the default location, or specify a different location to modify it.
-
-Output
-Anaconda3 will now be installed into this location:
-/home/sammy/anaconda3
-
-  - Press ENTER to confirm the location
-  - Press CTRL-C to abort the installation
-  - Or specify a different location below
-
-[/home/sammy/anaconda3] >>>
-
-The installation process will continue. Note that it may take some time.
-
-Once installation is complete, you’ll receive the following output:
-
-Output
-...
-installation finished.
-Do you wish the installer to initialize Anaconda3
-by running conda init? [yes|no]
-[no] >>>
-Type yes so that you can initialize Anaconda3.
-
-Output
-...
-Thank you for installing Anaconda3!
-...
-You can now activate the installation by sourcing the ~/.bashrc file:
-
-(base) root@d48f2e696170:/# source ~/.bashrc
-
-================================================================================
 [ 서버파일 백업 @ 루트 디렉토리 ] ai_@_wwhss_alpha_version (3.7G) 설치 후
 ================================================================================
 
@@ -209,6 +131,84 @@ $ sudo apt install php-fpm
 Node.js 설치:
 Node.js를 설치하기 위해서는 Node.js의 패키지 매니저인 NPM(Node Package Manager)도 함께 설치
 $ sudo apt install nodejs npm
+
+================================================================================
+[ Installing Anaconda ]
+================================================================================
+
+The best way to install Anaconda is to download the latest Anaconda installer bash script, verify it, and then run it.
+Find the latest version of Anaconda for Python 3 at the Anaconda Downloads page. At the time of writing, the latest version is 2021.11.
+Next, change to the /tmp directory on your server. This is a good directory to download ephemeral items, like the Anaconda bash script.
+
+root@d48f2e696170:/# cd /tmp
+
+Use curl to download the link that you copied from the Anaconda website. You’ll output this to a file called anaconda.sh for quicker use.
+
+root@d48f2e696170:/# sudo apt update
+root@d48f2e696170:/# sudo apt install curl
+
+root@d48f2e696170:/# curl https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh --output anaconda.sh
+
+You can now verify the data integrity of the installer with cryptographic hash verification through the SHA-256 checksum. You’ll use the sha256sum command along with the filename of the script:
+
+root@d48f2e696170:/# sha256sum anaconda.sh
+
+You’ll receive output that looks similar to this:
+
+Output
+fedf9e340039557f7b5e8a8a86affa9d299f5e9820144bd7b92ae9f7ee08ac60  anaconda.sh
+
+You should check the output against the hashes available at the Anaconda with Python 3 on 64-bit Linux page for your appropriate Anaconda version. As long as your output matches the hash displayed in the sha256 row, you’re good to go.
+
+Now you can run the script:
+
+root@d48f2e696170:/# bash anaconda.sh
+
+You’ll receive the following output:
+
+Output
+Welcome to Anaconda3 2021.11
+
+In order to continue the installation process, please review the license agreement.
+Please, press ENTER to continue (press Space)
+>>>  
+Press ENTER to continue and then press ENTER to read through the license. Once you’re done reading the license, you’ll be prompted to approve the license terms:
+
+Output
+Do you approve the license terms? [yes|no]
+As long as you agree, type yes.
+
+At this point, you’ll be prompted to choose the location of the installation. You can press ENTER to accept the default location, or specify a different location to modify it.
+
+Output
+Anaconda3 will now be installed into this location:
+/home/sammy/anaconda3
+
+  - Press ENTER to confirm the location
+  - Press CTRL-C to abort the installation
+  - Or specify a different location below
+
+[/home/sammy/anaconda3] >>>
+
+The installation process will continue. Note that it may take some time.
+
+Once installation is complete, you’ll receive the following output:
+
+Output
+...
+installation finished.
+Do you wish the installer to initialize Anaconda3
+by running conda init? [yes|no]
+[no] >>>
+Type yes so that you can initialize Anaconda3.
+
+Output
+...
+Thank you for installing Anaconda3!
+...
+You can now activate the installation by sourcing the ~/.bashrc file:
+
+(base) root@d48f2e696170:/# source ~/.bashrc
 
 ================================================================================
 [ reboot 후 서비스 자동실행 ]
