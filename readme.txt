@@ -125,6 +125,8 @@ pm.max_spare_servers = 40
 # 끝.
 
 $ sudo nano /etc/nginx/sites-available/default
+# Add index.php to the list if you are using PHP
+index index.php index.html index.htm index.nginx-debian.html;
 # PHP 사용을 위해 아래 부분 코멘트 # 제거 및 추가
         # pass PHP scripts to FastCGI server
         location ~ .php$ {
