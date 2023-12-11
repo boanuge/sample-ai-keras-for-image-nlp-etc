@@ -111,11 +111,17 @@ AddType application/x-httpd-php-source .phps
 아파치 서비스 재시작:
 $ sudo systemctl restart apache2
 
-Node.js 설치:
-Node.js의 패키지 매니저인 NPM(Node Package Manager)도 설치
+서비스 부팅시 재시작 등록:
+$ sudo systemctl enable apache2
+
+서비스 상태 확인:
+$ sudo systemctl status apache2
+
+Node.js 14.21.3 버전 및 Node Package Manager 6.14.18 버전 설치:
 $ curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 $ sudo apt install nodejs
-$ sudo apt install npm
+$ cd /root/chat_@_node.js
+$ npm install
 
 ================================================================================
 [ Installing Anaconda ]
@@ -207,7 +213,7 @@ $ sudo rm -rf /tmp/*
 
 # 파일 내용
 #!/bin/bash
-cd /root/chat_@_node.js/chat_@_node.js
+cd /root/chat_@_node.js
 nohup /usr/bin/node server.js > chat_log.txt 2>&1 &
 exit 0
 # 끝.
@@ -225,15 +231,24 @@ WantedBy=multi-user.target
 (base) root@d48f2e696170:/# sudo systemctl status rc-local.service
 ● rc-local.service - /etc/rc.local Compatibility
      Loaded: loaded (/lib/systemd/system/rc-local.service; enabled; vendor preset: enabled)
-    Drop-In: /usr/lib/systemd/system/rc-local.service.d
+    Drop-In: /lib/systemd/system/rc-local.service.d
              └─debian.conf
-     Active: active (running) since Thu 2023-05-04 04:44:11 UTC; 24s ago
+     Active: active (running) since Mon 2023-12-11 19:17:41 KST; 5s ago
        Docs: man:systemd-rc-local-generator(8)
-    Process: 531 ExecStart=/etc/rc.local start (code=exited, status=0/SUCCESS)
-      Tasks: 74 (limit: 37950)
-     Memory: 2.9G
-        CPU: 23.617s
+    Process: 16634 ExecStart=/etc/rc.local start (code=exited, status=0/SUCCESS)
+      Tasks: 11 (limit: 1126)
+     Memory: 24.2M
      CGroup: /system.slice/rc-local.service
-             └─541 /usr/bin/node server.js
+             └─16635 /usr/bin/node server.js
 
+Dec 11 19:17:41 integritian.cafe24.com systemd[1]: Starting /etc/rc.local Compatibility...
+Dec 11 19:17:41 integritian.cafe24.com systemd[1]: Started /etc/rc.local Compatibility.
+
+(base) root@d48f2e696170:/# ps -ef | grep node
+root       16436    2585  0 19:11 pts/0    00:00:00 /usr/bin/node server.js
+root       16545    2585  0 19:13 pts/0    00:00:00 grep --color=auto node
+(base) root@d48f2e696170:/# sudo kill -9 16436
+(base) root@d48f2e696170:/# ps -ef | grep node
+root       16557    2585  0 19:13 pts/0    00:00:00 grep --color=auto node
+[1]+  Killed                  nohup /usr/bin/node server.js > chat_log.txt 2>&1
 (base) root@d48f2e696170:/#
