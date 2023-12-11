@@ -264,3 +264,9 @@ $ sudo systemctl status jupyter.service
         CPU: 1.413s
      CGroup: /system.slice/jupyter.service
              └─500 /home/metaverse/anaconda3/bin/python /home/metaverse/anaconda3/bin/jupyter-notebook --allow-root
+
+================================================================================
+[서버 파일들 백업 @ 루트 디렉토리]
+================================================================================
+
+$ sudo tar czvf /path/to/backup_2023-12-11.tar.gz --directory=/ --exclude=proc --exclude=sys --exclude=dev/pts
