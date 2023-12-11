@@ -1,14 +1,8 @@
 @ 업데이트 @ 2023-12-11
 
 ================================================================================
-[ FTP 접속 ] Protocol: SFTP - SSH File Transfer Protocol 사용
+[ 서버정보 및 FTP 접속 ] Protocol: SFTP - SSH File Transfer Protocol 사용
 ================================================================================
-
-================================================================================
-[ 서버파일 백업 @ 루트 디렉토리 ]
-================================================================================
-
-$ sudo tar czvf /path/to/backup_2023-12-11.tar.gz --directory=/ --exclude=proc --exclude=sys --exclude=dev/pts
 
 $ df -Th
 Filesystem                  Type      Size  Used Avail Use% Mounted on
@@ -69,6 +63,12 @@ $ free -h
               total        used        free      shared  buff/cache   available
 Mem:          976Mi       115Mi       708Mi       2.0Mi       151Mi       718Mi
 Swap:         3.7Gi          0B       3.7Gi
+
+================================================================================
+[ 서버파일 백업 @ 루트 디렉토리 ]
+================================================================================
+
+$ sudo tar czvf /path/to/backup_2023-12-11.tar.gz --directory=/ --exclude=proc --exclude=sys --exclude=dev/pts
 
 ================================================================================
 [ 웹서버 설치 @ /var/www/html ] @ Nginx + PHP 및 Node.js
