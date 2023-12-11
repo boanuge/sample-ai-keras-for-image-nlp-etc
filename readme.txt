@@ -133,13 +133,10 @@ AddType application/x-httpd-php-source .phps
 $ sudo systemctl restart apache2
 
 Node.js 설치:
-Node.js를 설치하기 위해서는 Node.js의 패키지 매니저인 NPM(Node Package Manager)도 함께 설치
-$ sudo apt install nodejs npm
-
-프로젝트에서 ECMAScript 모듈을 사용하고 싶다면, 파일 확장자를 .js 를 .mjs로 변경하고
-실행할 때 --experimental-modules 플래그를 추가해야 합니다.
-Node.js 버전 13.2.0 이상에서는 .mjs 파일을 인식 합니다.
-$ node --experimental-modules server.mjs
+Node.js의 패키지 매니저인 NPM(Node Package Manager)도 설치
+$ curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+$ sudo apt install nodejs
+$ sudo apt install npm
 
 ================================================================================
 [ Installing Anaconda ]
