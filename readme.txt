@@ -228,13 +228,8 @@ $ sudo rm -rf /tmp/*
 
 # 파일 내용
 #!/bin/bash
-
-cd "/home/metaverse/ai-service-image @ 2023-05-01/"
-nohup /home/metaverse/anaconda3/bin/python flask_ai_service_image.py > error.log &
-
-cd "/home/metaverse/AI-Image-Classification @ 2023-05-01/"
-nohup /home/metaverse/anaconda3/bin/python flask_Image_Classification.py > error.log &
-
+cd /root/chat_@_node.js/chat_@_node.js
+nohup /usr/bin/node server.js > output.log 2>&1 &
 exit 0
 # 끝.
 
