@@ -90,60 +90,46 @@ $ sudo tar czvf /path/to/backup_2023-12-11.tar.gz --directory=/ --exclude=proc -
 [ 웹서버 설치 @ /var/www/html ] @ Nginx + PHP 및 Node.js
 ================================================================================
 
-Nginx 설치:
-
-@ https://nginx.org/en/linux_packages.html#Ubuntu
+아파치 웹 서버 설치:
 $ sudo apt update
-$ sudo apt install curl gnupg2 ca-certificates lsb-release ubuntu-keyring
+$ sudo apt install apache2
 
-$ curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+PHP 설치:
+$ sudo apt install -y php7.4
+$ sudo apt install -y libapache2-mod-php7.4
 
-$ gpg --dry-run --quiet --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
+$ php -v
+PHP 7.4.3-4ubuntu2.19 (cli) (built: Jun 27 2023 15:49:59) ( NTS )
+Copyright (c) The PHP Group
+Zend Engine v3.4.0, Copyright (c) Zend Technologies
+    with Zend OPcache v7.4.3-4ubuntu2.19, Copyright (c), by Zend Technologies
 
-$ echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu 'lsb_release -cs' nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+$ sudo nano /etc/php/7.4/apache2/php.ini
+;short_open_tag = Off
+short_open_tag = On
 
-$ echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" | sudo tee /etc/apt/preferences.d/99nginx
+아파치 모듈 활성화:
+$ sudo a2enmod php7.4
+Considering dependency mpm_prefork for php7.4:
+Considering conflict mpm_event for mpm_prefork:
+Considering conflict mpm_worker for mpm_prefork:
+Module mpm_prefork already enabled
+Considering conflict php5 for php7.4:
+Enabling module php7.4.
+To activate the new configuration, you need to run:
+  systemctl restart apache2
 
-$ sudo apt update && sudo apt install nginx -y
+로그 파일 비활성화:
+가장 간단한 방법은 아파치 웹 서버에서 로그를 비활성화하는 것입니다.
+아파치 설정 파일에서 ErrorLog 및 CustomLog 를 주석 처리 합니다.
+$ sudo nano /etc/apache2/apache2.conf
+# ErrorLog ${APACHE_LOG_DIR}/error.log
+AddType application/x-httpd-php .php .htm .html .inc
+AddType application/x-httpd-php-source .phps
+# CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-PHP 7.4 설치:
-
-$ sudo apt install software-properties-common && sudo add-apt-repository ppa:ondrej/php
-
-$ sudo apt update && sudo apt install php7.4 php7.4-{fpm,mysql,curl,imagick,zip,xml}
-
-$ sudo adduser --system --no-create-home --disabled-login --disabled-password --group nginx
-
-$ sudo nano /etc/php/7.4/fpm/pool.d/www.conf
-; 위 파일을 아래와 같이 편집한다.
-user = nginx
-group = nginx
-listen.owner = nginx
-listen.group = nginx
-pm.max_children = 50
-pm.start_servers = 5
-pm.min_spare_servers = 5
-pm.max_spare_servers = 40
-; 끝.
-
-$ sudo nano /etc/nginx/sites-available/default
-# Add index.php to the list if you are using PHP
-index index.php index.html index.htm index.nginx-debian.html;
-# PHP 사용을 위해 아래 부분 코멘트 # 제거 및 추가
-        # pass PHP scripts to FastCGI server
-        location ~ .php$ {
-            fastcgi_pass unix:/run/php/php7.4-fpm.sock;
-            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-            include fastcgi_params;
-            fastcgi_read_timeout 300;
-        }
-# 끝.
-
-Nginx 서비스 시작:
-$ sudo systemctl start nginx
-
-Nginx 부팅 시 자동 실행 설정:
-$ sudo systemctl enable nginx
+아파치 서비스 재시작:
+$ sudo systemctl restart apache2
 
 Node.js 설치:
 Node.js를 설치하기 위해서는 Node.js의 패키지 매니저인 NPM(Node Package Manager)도 함께 설치
