@@ -107,6 +107,9 @@ Zend Engine v3.4.0, Copyright (c) Zend Technologies
 $ sudo nano /etc/php/7.4/apache2/php.ini
 ;short_open_tag = Off
 short_open_tag = On
+; register_globals 옵션은 PHP 5.3.0에서 DEPRECATED 되었고,
+; PHP 5.4.0 부터는 제거되어서 사용할 수 없다.
+;register_globals = On
 
 아파치 모듈 활성화:
 $ sudo a2enmod php7.4
