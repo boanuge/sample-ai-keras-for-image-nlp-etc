@@ -115,18 +115,16 @@ Considering conflict mpm_event for mpm_prefork:
 Considering conflict mpm_worker for mpm_prefork:
 Module mpm_prefork already enabled
 Considering conflict php5 for php7.4:
-Enabling module php7.4.
-To activate the new configuration, you need to run:
-  systemctl restart apache2
+Module php7.4 already enabled
 
 로그 파일 비활성화:
 가장 간단한 방법은 아파치 웹 서버에서 로그를 비활성화하는 것입니다.
 아파치 설정 파일에서 ErrorLog 및 CustomLog 를 주석 처리 합니다.
 $ sudo nano /etc/apache2/apache2.conf
-# ErrorLog ${APACHE_LOG_DIR}/error.log
+#ErrorLog ${APACHE_LOG_DIR}/error.log
+ErrorLog ${APACHE_LOG_DIR}/error.log
 AddType application/x-httpd-php .php .htm .html .inc
 AddType application/x-httpd-php-source .phps
-# CustomLog ${APACHE_LOG_DIR}/access.log combined
 
 아파치 서비스 재시작:
 $ sudo systemctl restart apache2
