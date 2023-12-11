@@ -142,7 +142,7 @@ $ sudo rm -rf /var/lib/dpkg/info
 $ sudo mv /var/lib/dpkg/info_silent /var/lib/dpkg/info
 
 ================================================================================
-[AI 서버로 FTP 접속]
+[AI 서버로 FTP 접속] Protocol: SFTP - SSH File Transfer Protocol 사용
 ================================================================================
 
 install : sudo apt-get install vsftpd
