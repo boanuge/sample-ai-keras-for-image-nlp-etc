@@ -4,6 +4,32 @@
 [ 서버정보 및 FTP 접속 ] Protocol: SFTP - SSH File Transfer Protocol 사용
 ================================================================================
 
+가상서버호스팅에서 SWAP 파일 생성 방법은 다음과 같아요.
+1. SWAP 파일 생성을 위해 먼저 SSH 접속을 합니다.
+2. SWAP 파일 생성을 위한 명령어를 입력합니다. 명령어는 다음과 같아요.
+$ dd if=/dev/zero of=/swapfile bs=1024 count=4096000k
+(1024k는 SWAP 파일의 크기를 의미합니다. 필요에 따라 변경 가능합니다.)
+3. SWAP 파일 권한 설정을 합니다. 명령어는 다음과 같아요.
+$ chmod 600 /swapfile
+4. SWAP 파일 포맷을 합니다. 명령어는 다음과 같아요.
+$ mkswap /swapfile
+5. SWAP 파일을 활성화합니다. 명령어는 다음과 같아요.
+$ swapon /swapfile
+6. SWAP 파일이 정상적으로 생성되었는지 확인합니다. 명령어는 다음과 같아요.
+$ free -m
+(SWAP 항목에 생성한 SWAP 파일의 용량이 표시되면 정상적으로 생성된 것입니다.)
+위의 과정을 따라하시면 가상서버호스팅에서 SWAP 파일을 생성하실 수 있습니다.
+
+$ free -m
+              total        used        free      shared  buff/cache   available
+Mem:          976Mi       115Mi       708Mi       2.0Mi       151Mi       718Mi
+Swap:         3.7Gi          0B       3.7Gi
+
+$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:          976Mi       115Mi       708Mi       2.0Mi       151Mi       718Mi
+Swap:         3.7Gi          0B       3.7Gi
+
 $ df -Th
 Filesystem                  Type      Size  Used Avail Use% Mounted on
 udev                        devtmpfs  470M     0  470M   0% /dev
@@ -14,13 +40,6 @@ tmpfs                       tmpfs     5.0M     0  5.0M   0% /run/lock
 tmpfs                       tmpfs     489M     0  489M   0% /sys/fs/cgroup
 /dev/vda1                   ext2      470M  191M  255M  43% /boot
 tmpfs                       tmpfs      98M     0   98M   0% /run/user/0
-
-$ lsb_release -a
-No LSB modules are available.
-Distributor ID: Ubuntu
-Description:    Ubuntu 20.04 LTS
-Release:        20.04
-Codename:       focal
 
 $ lscpu
 Architecture:                    x86_64
@@ -59,10 +78,12 @@ Vulnerability Tsx async abort:   Not affected
 Flags:                           fpu de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pse36 clflush mmx fxsr sse sse2 syscall nx l
                                  m rep_good nopl cpuid tsc_known_freq pni cx16 hypervisor lahf_lm abm pti
 
-$ free -h
-              total        used        free      shared  buff/cache   available
-Mem:          976Mi       115Mi       708Mi       2.0Mi       151Mi       718Mi
-Swap:         3.7Gi          0B       3.7Gi
+$ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 20.04 LTS
+Release:        20.04
+Codename:       focal
 
 ================================================================================
 [ 서버파일 백업 @ 루트 디렉토리 ]
