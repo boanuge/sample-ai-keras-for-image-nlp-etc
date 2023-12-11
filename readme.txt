@@ -154,10 +154,9 @@ config : sudo nano /etc/vsftpd.conf
 pasv_enable=YES
 pasv_min_port=1024
 pasv_max_port=1048
-#chroot_local_user=YES
-
-#write_enable=YES
 write_enable=YES
+allow_writeable_chroot=YES
+allow_root=YES
 # 끝.
 
 run below commands :
