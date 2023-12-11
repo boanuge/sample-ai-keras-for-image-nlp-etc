@@ -113,8 +113,8 @@ Nginx 부팅 시 자동 실행 설정:
 $ sudo systemctl enable nginx
 
 PHP-FPM 설치:
-PHP를 Nginx와 통합하기 위해 PHP-FPM (FastCGI Process Manager)을 설치
-$ sudo apt install php-fpm
+PHP를 Nginx와 통합하기 위해 PHP-FPM (FastCGI Process Manager) 및 php 모듈들 설치
+$ sudo apt install php7.4-fpm php7.4-mysql php7.4-common php7.4-gd php7.4-json php7.4-cli php7.4-curl php7.4-zip php7.4-mbstring php7.4-xml
 
 (base) $ sudo nano /etc/nginx/sites-available/default
 # PHP 사용을 위해 아래 부분 코멘트 # 제거
