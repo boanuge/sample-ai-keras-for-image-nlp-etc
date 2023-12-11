@@ -233,40 +233,66 @@ WantedBy=multi-user.target
 (base) root@d48f2e696170:/#
 
 ================================================================================
-[주피터 노트북 자동실행]
-================================================================================
-
-$ sudo nano /etc/systemd/system/jupyter.service
-# 파일 내용
-
-[Unit]
-Description=Jupyter Notebook
-After=network.target
-
-[Service]
-Type=simple
-User=metaverse
-ExecStart=/home/gbike/anaconda3/bin/jupyter notebook --allow-root
-
-[Install]
-WantedBy=multi-user.target
-# 끝.
-
-$ sudo systemctl enable jupyter.service
-$ sudo systemctl start jupyter.service
-$ sudo systemctl status jupyter.service
-● jupyter.service - Jupyter Notebook
-     Loaded: loaded (/etc/systemd/system/jupyter.service; enabled; vendor preset: enabled)
-     Active: active (running) since Wed 2023-05-24 08:25:09 KST; 3min 1s ago
-   Main PID: 500 (jupyter-noteboo)
-      Tasks: 1 (limit: 18828)
-     Memory: 123.1M
-        CPU: 1.413s
-     CGroup: /system.slice/jupyter.service
-             └─500 /home/metaverse/anaconda3/bin/python /home/metaverse/anaconda3/bin/jupyter-notebook --allow-root
-
-================================================================================
-[서버 파일들 백업 @ 루트 디렉토리]
+[서버 파일들 백업 @ 루트 디렉토리] @ ai_@_wwhss_alpha_version (3.7G) 설치후
 ================================================================================
 
 $ sudo tar czvf /path/to/backup_2023-12-11.tar.gz --directory=/ --exclude=proc --exclude=sys --exclude=dev/pts
+
+$ df -Th
+Filesystem                  Type      Size  Used Avail Use% Mounted on
+udev                        devtmpfs  470M     0  470M   0% /dev
+tmpfs                       tmpfs      98M  612K   98M   1% /run
+/dev/mapper/ubuntu--vg-root ext4       26G   18G  6.4G  74% /
+tmpfs                       tmpfs     489M     0  489M   0% /dev/shm
+tmpfs                       tmpfs     5.0M     0  5.0M   0% /run/lock
+tmpfs                       tmpfs     489M     0  489M   0% /sys/fs/cgroup
+/dev/vda1                   ext2      470M  191M  255M  43% /boot
+tmpfs                       tmpfs      98M     0   98M   0% /run/user/0
+
+$ lsb_release -a
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 20.04 LTS
+Release:        20.04
+Codename:       focal
+
+$ lscpu
+Architecture:                    x86_64
+CPU op-mode(s):                  32-bit, 64-bit
+Byte Order:                      Little Endian
+Address sizes:                   39 bits physical, 48 bits virtual
+CPU(s):                          4
+On-line CPU(s) list:             0-3
+Thread(s) per core:              1
+Core(s) per socket:              1
+Socket(s):                       4
+NUMA node(s):                    1
+Vendor ID:                       GenuineIntel
+CPU family:                      6
+Model:                           13
+Model name:                      QEMU Virtual CPU version (cpu64-rhel6)
+Stepping:                        3
+CPU MHz:                         3503.986
+BogoMIPS:                        7007.97
+Hypervisor vendor:               KVM
+Virtualization type:             full
+L1d cache:                       128 KiB
+L1i cache:                       128 KiB
+L2 cache:                        16 MiB
+NUMA node0 CPU(s):               0-3
+Vulnerability Itlb multihit:     KVM: Vulnerable
+Vulnerability L1tf:              Mitigation; PTE Inversion
+Vulnerability Mds:               Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+Vulnerability Meltdown:          Mitigation; PTI
+Vulnerability Mmio stale data:   Not affected
+Vulnerability Spec store bypass: Vulnerable
+Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+Vulnerability Spectre v2:        Mitigation; Retpolines, STIBP disabled, RSB filling, PBRSB-eIBRS Not affected
+Vulnerability Srbds:             Not affected
+Vulnerability Tsx async abort:   Not affected
+Flags:                           fpu de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pse36 clflush mmx fxsr sse sse2 syscall nx lm rep_good nopl cpuid tsc_known_freq pni cx16 hypervisor la
+                                 hf_lm abm pti
+$ free -h
+              total        used        free      shared  buff/cache   available
+Mem:          976Mi        58Mi       379Mi       1.0Mi       538Mi       752Mi
+Swap:         3.7Gi        40Mi       3.7Gi
