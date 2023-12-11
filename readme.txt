@@ -113,7 +113,7 @@ $ sudo apt install software-properties-common && sudo add-apt-repository ppa:ond
 $ sudo apt update && sudo apt install php7.4 php7.4-{fpm,mysql,curl,imagick,zip,xml}
 
 $ sudo nano /etc/php/7.4/fpm/pool.d/www.conf
-# 위 파일을 아래와 같이 편집한다.
+; 위 파일을 아래와 같이 편집한다.
 user = nginx
 group = nginx
 listen.owner = nginx
@@ -122,7 +122,7 @@ pm.max_children = 50
 pm.start_servers = 5
 pm.min_spare_servers = 5
 pm.max_spare_servers = 40
-# 끝.
+; 끝.
 
 $ sudo nano /etc/nginx/sites-available/default
 # Add index.php to the list if you are using PHP
