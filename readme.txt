@@ -42,8 +42,8 @@ $ sudo tar czvf /path/to/backup_2023-12-11.tar.gz --directory=/ --exclude=proc -
 $ df -Th
 Filesystem                  Type      Size  Used Avail Use% Mounted on
 udev                        devtmpfs  470M     0  470M   0% /dev
-tmpfs                       tmpfs      98M  612K   98M   1% /run
-/dev/mapper/ubuntu--vg-root ext4       26G   18G  6.4G  74% /
+tmpfs                       tmpfs      98M  628K   98M   1% /run
+/dev/mapper/ubuntu--vg-root ext4       26G  2.8G   22G  12% /
 tmpfs                       tmpfs     489M     0  489M   0% /dev/shm
 tmpfs                       tmpfs     5.0M     0  5.0M   0% /run/lock
 tmpfs                       tmpfs     489M     0  489M   0% /sys/fs/cgroup
@@ -91,12 +91,13 @@ Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user
 Vulnerability Spectre v2:        Mitigation; Retpolines, STIBP disabled, RSB filling, PBRSB-eIBRS Not affected
 Vulnerability Srbds:             Not affected
 Vulnerability Tsx async abort:   Not affected
-Flags:                           fpu de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pse36 clflush mmx fxsr sse sse2 syscall nx lm rep_good nopl cpuid tsc_known_freq pni cx16 hypervisor la
-                                 hf_lm abm pti
+Flags:                           fpu de pse tsc msr pae mce cx8 apic mtrr pge mca cmov pse36 clflush mmx fxsr sse sse2 syscall nx l
+                                 m rep_good nopl cpuid tsc_known_freq pni cx16 hypervisor lahf_lm abm pti
+
 $ free -h
               total        used        free      shared  buff/cache   available
-Mem:          976Mi        58Mi       379Mi       1.0Mi       538Mi       752Mi
-Swap:         3.7Gi        40Mi       3.7Gi
+Mem:          976Mi       115Mi       708Mi       2.0Mi       151Mi       718Mi
+Swap:         3.7Gi          0B       3.7Gi
 
 ================================================================================
 [ 웹서버 설치 @ /var/www/html ] @ Nginx + PHP 및 Node.js
