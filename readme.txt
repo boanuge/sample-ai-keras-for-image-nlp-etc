@@ -1,40 +1,11 @@
 @ 업데이트 @ 2023-12-11
 
 ================================================================================
-[ AI 서버로 FTP 접속 ] Protocol: SFTP - SSH File Transfer Protocol 사용
+[ FTP 접속 ] Protocol: SFTP - SSH File Transfer Protocol 사용
 ================================================================================
 
-install : sudo apt-get install vsftpd
-
-config : sudo nano /etc/vsftpd.conf
-
-# 파일 마지막 줄 아래 붙여 넣을것
-#vsftpd.conf
-pasv_enable=YES
-pasv_min_port=1024
-pasv_max_port=1048
-write_enable=YES
-allow_writeable_chroot=YES
-allow_root=YES
-# 끝.
-
-run below commands :
-sudo ufw allow 20/tcp
-sudo ufw allow 21/tcp
-sudo systemctl restart vsftpd
-sudo systemctl enable vsftpd
-sudo service vsftpd start
-
-EC2 inbound : 1024 ~ 1048 , 21 , 20
-
-FileZilla Client로 FTP(파일 전송 프로토콜) 접속
-
-전송 설정 --> 전송 모드 --> 기본
-
-문자셋 --> UTF-8로 강제 설정
-
 ================================================================================
-[ 서버파일 백업 @ 루트 디렉토리 ] ai_@_wwhss_alpha_version (3.7G) 설치 후
+[ 서버파일 백업 @ 루트 디렉토리 ]
 ================================================================================
 
 $ sudo tar czvf /path/to/backup_2023-12-11.tar.gz --directory=/ --exclude=proc --exclude=sys --exclude=dev/pts
