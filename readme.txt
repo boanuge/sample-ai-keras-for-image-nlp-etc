@@ -1,54 +1,4 @@
-================================================================================
-[AI 서버 오토스케일링 정책]
-================================================================================
-
-Route53 : live.ai-api.com (도메인생성)
---> ALB : LIVE-ALB-AI-API (로드밸런서/리스너추가)
---> TG : LIVE-TG-AI-API-5001 ~ LIVE-TG-AI-API-5009 (타겟그룹/포워딩추가)
---> AMI : LIVE-AMI-AI-API-V1 ~ LIVE-AMI-AI-API-V9 (이미지생성)
---> LT : LIVE-LT-AI-API (런치템플릿/새버전생성/이미지변경)
---> ASG : LIVE-ASG-AI-API (오토스케일링정책/인스턴스새로고침)
-1분 내 200개 요청시 : EC2 추가 생성 오토스케일링그룹 내 자동크기조정에서 변경 가능
-- 요청 타임아웃 10초일 때 이미지모델 추론서버 하나당 1분 내 약 100개 정도 핸들링
-Desired/Minimum capacity : 2
-Maximum capacity : 8
-
-EC2-AI-GPU
-Instance Size	GPU	vCPUs	Memory	Instance Storage	On-Demand Price/hr*
-g4dn.2xlarge	1	8	32	1 x 225 NVMe SSD	$0.752
-g4dn.2xlarge @ ap-northeast-2a
-OS : Ubuntu 22.04 x86_64
-RAM : 32G
-GPU : NVIDIA GPU x1개 + CPU x8개
-DISK : 64G (SSD)
-
-Network settings --> VPC : 10.254.0.0/16, 10.255.0.0/16
-Network settings --> Subnet : 10.255.120.0/24
-Network settings --> Auto-assign public IP : Disable
-Network settings --> Existing Security Group : SG-EC2-AI-GPU
-Advanced details --> User data - optional
-#cloud-config
-system_info:
-  default_user:
-    name: metaverse
-
-================================================================================
-[Security Groups]
-================================================================================
-
-SG-EC2-AI-GPU
-
-IP version, Type, Protocol, Port range, Source, Description
-22	TCP	10.0.0.22/32	SG-EC2-AI-GPU 	live-vpn @ metaverse
-1024 - 1048	TCP	0.0.0.0/0	SG-EC2-AI-GPU 	ftp passive mode @ metaverse
-5000 - 5009	TCP	0.0.0.0/0	SG-EC2-AI-GPU 	python flask @ ai-service (live)
-5550 - 5559	TCP	0.0.0.0/0	SG-EC2-AI-GPU 	python flask @ ai-service (test)
-9999	TCP	0.0.0.0/0	SG-EC2-AI-GPU 	jupyter notebook @ metaverse
-20 - 21	TCP	0.0.0.0/0	SG-EC2-AI-GPU 	FileZilla Client @ metaverse
-
-사용자명 (metaverse//비번)
-sudo passwd root
-sudo passwd metaverse
+@ 업데이트 @ 2023-12-11
 
 ================================================================================
 [NVIDIA GPU to use CUDA]
@@ -182,15 +132,18 @@ The best way to install Anaconda is to download the latest Anaconda installer ba
 Find the latest version of Anaconda for Python 3 at the Anaconda Downloads page. At the time of writing, the latest version is 2021.11.
 Next, change to the /tmp directory on your server. This is a good directory to download ephemeral items, like the Anaconda bash script.
 
-(base) root@d48f2e696170:/# cd /tmp
+root@d48f2e696170:/# cd /tmp
 
 Use curl to download the link that you copied from the Anaconda website. You’ll output this to a file called anaconda.sh for quicker use.
 
-(base) root@d48f2e696170:/# curl https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh --output anaconda.sh
+root@d48f2e696170:/# sudo apt update
+root@d48f2e696170:/# sudo apt install curl
+
+root@d48f2e696170:/# curl https://repo.anaconda.com/archive/Anaconda3-2021.11-Linux-x86_64.sh --output anaconda.sh
 
 You can now verify the data integrity of the installer with cryptographic hash verification through the SHA-256 checksum. You’ll use the sha256sum command along with the filename of the script:
 
-(base) root@d48f2e696170:/# sha256sum anaconda.sh
+root@d48f2e696170:/# sha256sum anaconda.sh
 
 You’ll receive output that looks similar to this:
 
@@ -201,7 +154,7 @@ You should check the output against the hashes available at the Anaconda with Py
 
 Now you can run the script:
 
-(base) root@d48f2e696170:/# bash anaconda.sh
+root@d48f2e696170:/# bash anaconda.sh
 
 You’ll receive the following output:
 
