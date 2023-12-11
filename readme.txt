@@ -96,32 +96,54 @@ $ sudo tar czvf /path/to/backup_2023-12-11.tar.gz --directory=/ --exclude=proc -
 ================================================================================
 
 Nginx 설치:
-$ sudo apt update
-$ sudo apt install nginx
+
+@ https://nginx.org/en/linux_packages.html#Ubuntu
+$ sudo apt install curl gnupg2 ca-certificates lsb-release ubuntu-keyring
+
+$ curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
+
+$ gpg --dry-run --quiet --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
+
+$ echo "deb [signed-by=/usr/share/keyrings/nginx-archive-keyring.gpg] http://nginx.org/packages/ubuntu 'lsb_release -cs' nginx" | sudo tee /etc/apt/sources.list.d/nginx.list
+
+$ echo -e "Package: *\nPin: origin nginx.org\nPin: release o=nginx\nPin-Priority: 900\n" | sudo tee /etc/apt/preferences.d/99nginx
+
+$ sudo apt update && sudo apt install nginx -y
+
+PHP 7.4 설치:
+
+$ sudo apt install software-properties-common && sudo add-apt-repository ppa:ondrej/php
+
+$ sudo apt update && sudo apt install php7.4 php7.4-{fpm,mysql,curl,imagick,zip,xml}
+
+$ sudo nano /etc/php/7.4/fpm/pool.d/www.conf
+# 위 파일을 아래와 같이 편집한다.
+user = nginx
+group = nginx
+listen.owner = nginx
+listen.group = nginx
+pm.max_children = 50
+pm.start_servers = 5
+pm.min_spare_servers = 5
+pm.max_spare_servers = 40
+# 끝.
+
+$ sudo nano /etc/nginx/sites-available/default
+# PHP 사용을 위해 아래 부분 코멘트 # 제거 및 추가
+        # pass PHP scripts to FastCGI server
+        location ~ .php$ {
+            fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+            include fastcgi_params;
+            fastcgi_read_timeout 300;
+        }
+# 끝.
 
 Nginx 서비스 시작:
 $ sudo systemctl start nginx
 
 Nginx 부팅 시 자동 실행 설정:
 $ sudo systemctl enable nginx
-
-PHP-FPM 설치:
-PHP를 Nginx와 통합하기 위해 PHP-FPM (FastCGI Process Manager) 및 php 모듈들 설치
-$ sudo apt install php7.4-fpm php7.4-common
-
-(base) $ sudo nano /etc/nginx/sites-available/default
-# PHP 사용을 위해 아래 부분 코멘트 # 제거 및 추가
-        # pass PHP scripts to FastCGI server
-        location ~ \.php$ {
-                include snippets/fastcgi-php.conf;
-                # With php-fpm (or other unix sockets):
-                fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
-                fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-                include fastcgi_params;
-                # With php-cgi (or other tcp sockets):
-                #fastcgi_pass 127.0.0.1:9000;
-        }
-# 끝.
 
 Node.js 설치:
 Node.js를 설치하기 위해서는 Node.js의 패키지 매니저인 NPM(Node Package Manager)도 함께 설치
