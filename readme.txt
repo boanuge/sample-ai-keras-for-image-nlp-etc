@@ -20,11 +20,6 @@ $ free -m
 (SWAP 항목에 생성한 SWAP 파일의 용량이 표시되면 정상적으로 생성된 것입니다.)
 위의 과정을 따라하시면 가상서버호스팅에서 SWAP 파일을 생성하실 수 있습니다.
 
-$ free -m
-              total        used        free      shared  buff/cache   available
-Mem:          976Mi       115Mi       708Mi       2.0Mi       151Mi       718Mi
-Swap:         3.7Gi          0B       3.7Gi
-
 $ free -h
               total        used        free      shared  buff/cache   available
 Mem:          976Mi       115Mi       708Mi       2.0Mi       151Mi       718Mi
@@ -98,6 +93,7 @@ $ sudo tar czvf /path/to/backup_2023-12-11.tar.gz --directory=/ --exclude=proc -
 Nginx 설치:
 
 @ https://nginx.org/en/linux_packages.html#Ubuntu
+$ sudo apt update
 $ sudo apt install curl gnupg2 ca-certificates lsb-release ubuntu-keyring
 
 $ curl https://nginx.org/keys/nginx_signing.key | gpg --dearmor | sudo tee /usr/share/keyrings/nginx-archive-keyring.gpg >/dev/null
