@@ -124,7 +124,8 @@ Module php7.4 already enabled
 가장 간단한 방법은 아파치 웹 서버에서 로그를 비활성화하는 것입니다.
 아파치 설정 파일에서 ErrorLog 및 CustomLog 를 주석 처리 합니다.
 $ sudo nano /etc/apache2/apache2.conf
-#ErrorLog ${APACHE_LOG_DIR}/error.log
+#LogLevel warn
+LogLevel error
 ErrorLog ${APACHE_LOG_DIR}/error.log
 AddType application/x-httpd-php .php .htm .html .inc
 AddType application/x-httpd-php-source .phps
@@ -234,7 +235,6 @@ exit 0
 # 끝.
 
 (base) root@d48f2e696170:/# sudo chmod +x /etc/rc.local
-
 (base) root@d48f2e696170:/# sudo nano /lib/systemd/system/rc-local.service
 
 # 파일 마지막 줄 아래 붙여 넣을것
@@ -256,7 +256,6 @@ WantedBy=multi-user.target
      Memory: 2.9G
         CPU: 23.617s
      CGroup: /system.slice/rc-local.service
-             ├─540 /home/metaverse/anaconda3/bin/python flask_ai_service_image.py
-             └─541 /home/metaverse/anaconda3/bin/python flask_Image_Classification.py
+             └─541 /usr/bin/node server.js
 
 (base) root@d48f2e696170:/#
