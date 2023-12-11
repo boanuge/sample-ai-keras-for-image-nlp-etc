@@ -221,3 +221,34 @@ $ free -h
               total        used        free      shared  buff/cache   available
 Mem:          976Mi        58Mi       379Mi       1.0Mi       538Mi       752Mi
 Swap:         3.7Gi        40Mi       3.7Gi
+
+================================================================================
+[웹서버 설치]
+================================================================================
+
+Nginx 설치:
+$ sudo apt update
+$ sudo apt install nginx
+
+Nginx 서비스 시작:
+$ sudo systemctl start nginx
+
+Nginx 부팅 시 자동 실행 설정:
+$ sudo systemctl enable nginx
+
+PHP-FPM 설치:
+PHP를 Nginx와 통합하기 위해 PHP-FPM (FastCGI Process Manager)을 설치합니다.
+$ sudo apt install php-fpm
+
+(base) $ sudo nano /etc/nginx/sites-available/default
+# PHP 사용을 위해 아래 부분 코멘트 # 제거
+        # pass PHP scripts to FastCGI server
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+
+                # With php-fpm (or other unix sockets):
+                fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+                # With php-cgi (or other tcp sockets):
+                fastcgi_pass 127.0.0.1:9000;
+        }
+# 끝.
