@@ -1,7 +1,7 @@
 @ 업데이트 @ 2023-12-11
 
 ================================================================================
-[AI 서버로 FTP 접속] Protocol: SFTP - SSH File Transfer Protocol 사용
+[ AI 서버로 FTP 접속 ] Protocol: SFTP - SSH File Transfer Protocol 사용
 ================================================================================
 
 install : sudo apt-get install vsftpd
@@ -34,7 +34,7 @@ FileZilla Client로 FTP(파일 전송 프로토콜) 접속
 문자셋 --> UTF-8로 강제 설정
 
 ================================================================================
-[Installing Anaconda]
+[ Installing Anaconda ]
 ================================================================================
 
 The best way to install Anaconda is to download the latest Anaconda installer bash script, verify it, and then run it.
@@ -112,53 +112,7 @@ You can now activate the installation by sourcing the ~/.bashrc file:
 (base) root@d48f2e696170:/# source ~/.bashrc
 
 ================================================================================
-[reboot 후 서비스 자동실행]
-================================================================================
-
-(base) root@d48f2e696170:/# sudo nano /etc/rc.local
-
-# 파일 내용
-#!/bin/bash
-
-cd "/home/metaverse/ai-service-image @ 2023-05-01/"
-nohup /home/metaverse/anaconda3/bin/python flask_ai_service_image.py > error.log &
-
-cd "/home/metaverse/AI-Image-Classification @ 2023-05-01/"
-nohup /home/metaverse/anaconda3/bin/python flask_Image_Classification.py > error.log &
-
-exit 0
-# 끝.
-
-(base) root@d48f2e696170:/# sudo chmod +x /etc/rc.local
-
-(base) root@d48f2e696170:/# sudo nano /lib/systemd/system/rc-local.service
-
-# 파일 마지막 줄 아래 붙여 넣을것
-[Install]
-WantedBy=multi-user.target
-# 끝.
-
-(base) root@d48f2e696170:/# sudo systemctl enable rc-local.service
-(base) root@d48f2e696170:/# sudo systemctl start rc-local.service
-(base) root@d48f2e696170:/# sudo systemctl status rc-local.service
-● rc-local.service - /etc/rc.local Compatibility
-     Loaded: loaded (/lib/systemd/system/rc-local.service; enabled; vendor preset: enabled)
-    Drop-In: /usr/lib/systemd/system/rc-local.service.d
-             └─debian.conf
-     Active: active (running) since Thu 2023-05-04 04:44:11 UTC; 24s ago
-       Docs: man:systemd-rc-local-generator(8)
-    Process: 531 ExecStart=/etc/rc.local start (code=exited, status=0/SUCCESS)
-      Tasks: 74 (limit: 37950)
-     Memory: 2.9G
-        CPU: 23.617s
-     CGroup: /system.slice/rc-local.service
-             ├─540 /home/metaverse/anaconda3/bin/python flask_ai_service_image.py
-             └─541 /home/metaverse/anaconda3/bin/python flask_Image_Classification.py
-
-(base) root@d48f2e696170:/#
-
-================================================================================
-[서버 파일들 백업 @ 루트 디렉토리] @ ai_@_wwhss_alpha_version (3.7G) 설치후
+[ 서버파일 백업 @ 루트 디렉토리 ] ai_@_wwhss_alpha_version (3.7G) 설치 후
 ================================================================================
 
 $ sudo tar czvf /path/to/backup_2023-12-11.tar.gz --directory=/ --exclude=proc --exclude=sys --exclude=dev/pts
@@ -223,7 +177,7 @@ Mem:          976Mi        58Mi       379Mi       1.0Mi       538Mi       752Mi
 Swap:         3.7Gi        40Mi       3.7Gi
 
 ================================================================================
-[웹서버 설치]
+[ 웹서버 설치 @ /var/www/html ] @ Nginx + PHP 및 Node.js
 ================================================================================
 
 Nginx 설치:
@@ -237,7 +191,7 @@ Nginx 부팅 시 자동 실행 설정:
 $ sudo systemctl enable nginx
 
 PHP-FPM 설치:
-PHP를 Nginx와 통합하기 위해 PHP-FPM (FastCGI Process Manager)을 설치합니다.
+PHP를 Nginx와 통합하기 위해 PHP-FPM (FastCGI Process Manager)을 설치
 $ sudo apt install php-fpm
 
 (base) $ sudo nano /etc/nginx/sites-available/default
@@ -245,10 +199,59 @@ $ sudo apt install php-fpm
         # pass PHP scripts to FastCGI server
         location ~ \.php$ {
                 include snippets/fastcgi-php.conf;
-
                 # With php-fpm (or other unix sockets):
                 fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
                 # With php-cgi (or other tcp sockets):
-                fastcgi_pass 127.0.0.1:9000;
+                #fastcgi_pass 127.0.0.1:9000;
         }
 # 끝.
+
+Node.js 설치:
+Node.js를 설치하기 위해서는 Node.js의 패키지 매니저인 NPM(Node Package Manager)도 함께 설치
+$ sudo apt install nodejs npm
+
+================================================================================
+[ reboot 후 서비스 자동실행 ]
+================================================================================
+
+(base) root@d48f2e696170:/# sudo nano /etc/rc.local
+
+# 파일 내용
+#!/bin/bash
+
+cd "/home/metaverse/ai-service-image @ 2023-05-01/"
+nohup /home/metaverse/anaconda3/bin/python flask_ai_service_image.py > error.log &
+
+cd "/home/metaverse/AI-Image-Classification @ 2023-05-01/"
+nohup /home/metaverse/anaconda3/bin/python flask_Image_Classification.py > error.log &
+
+exit 0
+# 끝.
+
+(base) root@d48f2e696170:/# sudo chmod +x /etc/rc.local
+
+(base) root@d48f2e696170:/# sudo nano /lib/systemd/system/rc-local.service
+
+# 파일 마지막 줄 아래 붙여 넣을것
+[Install]
+WantedBy=multi-user.target
+# 끝.
+
+(base) root@d48f2e696170:/# sudo systemctl enable rc-local.service
+(base) root@d48f2e696170:/# sudo systemctl start rc-local.service
+(base) root@d48f2e696170:/# sudo systemctl status rc-local.service
+● rc-local.service - /etc/rc.local Compatibility
+     Loaded: loaded (/lib/systemd/system/rc-local.service; enabled; vendor preset: enabled)
+    Drop-In: /usr/lib/systemd/system/rc-local.service.d
+             └─debian.conf
+     Active: active (running) since Thu 2023-05-04 04:44:11 UTC; 24s ago
+       Docs: man:systemd-rc-local-generator(8)
+    Process: 531 ExecStart=/etc/rc.local start (code=exited, status=0/SUCCESS)
+      Tasks: 74 (limit: 37950)
+     Memory: 2.9G
+        CPU: 23.617s
+     CGroup: /system.slice/rc-local.service
+             ├─540 /home/metaverse/anaconda3/bin/python flask_ai_service_image.py
+             └─541 /home/metaverse/anaconda3/bin/python flask_Image_Classification.py
+
+(base) root@d48f2e696170:/#
