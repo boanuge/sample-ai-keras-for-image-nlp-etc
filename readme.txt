@@ -112,6 +112,8 @@ $ sudo apt install software-properties-common && sudo add-apt-repository ppa:ond
 
 $ sudo apt update && sudo apt install php7.4 php7.4-{fpm,mysql,curl,imagick,zip,xml}
 
+$ sudo adduser --system --no-create-home --disabled-login --disabled-password --group nginx
+
 $ sudo nano /etc/php/7.4/fpm/pool.d/www.conf
 ; 위 파일을 아래와 같이 편집한다.
 user = nginx
